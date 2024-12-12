@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+    public class CommandBaseWithIdentity<TIdentity> : CommandBase {
+        public TIdentity? OriginatingUser { get; set; }
+        public TIdentity? ImpersonatedUser { get; set; }
+    }
+}

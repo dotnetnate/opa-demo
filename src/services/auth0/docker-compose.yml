@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  oauth-mock-server:
+    build: .
+    ports:
+      - "${PORT}:8081"
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - TENANT_ID=${TENANT_ID}
+    volumes:
+      - ./certs:/app/certs

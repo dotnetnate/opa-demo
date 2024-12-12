@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>CitizensFinancialGroup.Entitlements.Tenants.Service.Http</AssemblyName>
+    <RootNamespace>CitizensFinancialGroup.Threvw.Tenants.Service.Http</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Automapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+    <PackageReference Include="MongoDB.Driver.Core.Extensions.DiagnosticSources" Version="2.0.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.10.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.10.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Metrics\Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLib\CommonLib.csproj" />
+    <ProjectReference Include="..\Tenant.Service.Domain\Tenant.Domain.csproj" />
+    <ProjectReference Include="..\Tenant.Service.Infrastructure\Tenant.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

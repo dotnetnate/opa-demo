@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  opa:
+    environment:
+      - LOG_LEVEL=debug
+
+  mongodb:
+    environment:
+      MONGO_INITDB_DATABASE: opa-demo
