@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 using CitizensFinancialGroup.Threvw.Tenants.Domain;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants;

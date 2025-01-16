@@ -1,5 +1,5 @@
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,29 +1,25 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 
 using CitizensFinancialGroup.Threvw.Policies.Domain;
 using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
 using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
-using InternalValidationResult = CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models.InternalValidationResult;
+using System.Web;
+
 
 namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Controllers {
     [ApiController]
     [Route("api/policies")]
-    public class PolicyController : ControllerBase {
-        private readonly IPolicyService _policyService;
-        private readonly ILogger<PolicyController> _logger;
-        private readonly IMapper _mapper;
+    public class PolicyController(IPolicyService policyService, ILogger<PolicyController> logger, IMapper mapper) : ControllerBase {
 
-        public PolicyController(IPolicyService policyService, ILogger<PolicyController> logger, IMapper mapper) {
-            _policyService = policyService;
-            _logger = logger;
-            _mapper = mapper;
-        }
+        private readonly IPolicyService _policyService = policyService;
+        private readonly ILogger<PolicyController> _logger = logger;
+        private readonly IMapper _mapper = mapper;
 
-        [HttpGet]
-        public async Task<IActionResult> FindPolicies([FromQuery] FindPoliciesRequest request) {
+        [HttpPost]
+        public async Task<IActionResult> FindPolicies([FromBody] FindPoliciesRequest request) {
             var query = _mapper.Map<FindPoliciesQuery>(request);
 
             var result = await _policyService.FindPolicies(query);
@@ -37,8 +33,11 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpGet("{resourceId}/{resourceType}")]
-        public async Task<IActionResult> GetPolicyByResource([FromRoute] FindPolicyByResourceRequest request) {
+        [HttpGet("{authority}/{resourceId}")]
+        public async Task<IActionResult> GetPolicyForResource([FromRoute] FindPolicyByResourceRequest request) {
+
+            request.Authority = HttpUtility.UrlDecode(request.Authority);
+
             var query = _mapper.Map<FindPolicyByResourceQuery>(request);
 
             var result = await _policyService.GetPolicyByResource(query);
@@ -52,7 +51,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpPost]
+        [HttpPost]        
         public async Task<IActionResult> CreatePolicy([FromBody] CreatePolicyRequest model) {
             _logger.LogInformation("Creating policy for resource: {Resource}", model.Resource);
 
@@ -61,18 +60,27 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
 
             if (result.IsSuccess()) {
                 var retVal = _mapper.Map<PolicyModel>(result.Result);
-                return CreatedAtAction(nameof(GetPolicyByResource), new { resourceId = retVal.Resource.ResourceId, resourceType = retVal.Resource.ResourceType }, retVal);
+                return CreatedAtAction(nameof(GetPolicyForResource), new {  authority = retVal.Resource.Authority, resourceId = retVal.Resource.Identifier }, retVal);
             }
             else {
                 return BuildErrorResponse(result);
             }
         }
 
-        [HttpPut("{resourceId}/{resourceType}")]
-        public async Task<IActionResult> UpdatePolicy(string resourceId, string resourceType, [FromBody] UpdatePolicyRequest model) {
-            var command = _mapper.Map<UpdatePolicyCommand>(model);
-            command.Resource = new Resource { ResourceId = resourceId, ResourceType = resourceType };
-
+        /// <summary>
+        /// Updates a policy for an existing resource, overwriting the existing rules with the new rules.
+        /// </summary>
+        /// <param name="resourceId">The id of the resource.</param>
+        /// <param name="authority">The authority of the resource id.</param>
+        /// <param name="request">The request body.</param>
+        /// <returns></returns>
+        [HttpPut("{authority}/{resourceId}")]
+        public async Task<IActionResult> UpdatePolicy(string resourceId, string authority, [FromBody] UpdatePolicyRequest request) {
+            
+            var command = _mapper.Map<UpdatePolicyCommand>(request);
+            
+            command.Resource = new Resource { Identifier = resourceId, Authority = authority};
+            
             var result = await _policyService.UpdatePolicy(command);
 
             if (result.IsSuccess()) {
@@ -84,10 +92,10 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpDelete("{resourceId}/{resourceType}")]
-        public async Task<IActionResult> DeletePolicy(string resourceId, string resourceType) {
+        [HttpDelete("{authority}/{resourceId}")]
+        public async Task<IActionResult> DeletePolicyForResource(string authority, string resourceId) {
             var command = new DeletePolicyCommand {
-                Resource = new Resource { ResourceId = resourceId, ResourceType = resourceType }
+                Resource = new Resource { Identifier = resourceId, Authority = authority }
             };
 
             var result = await _policyService.DeletePolicy(command);
@@ -100,10 +108,10 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpPost("{resourceId}/{resourceType}/rules")]
-        public async Task<IActionResult> AddOrUpdateRule(string resourceId, string resourceType, [FromBody] AddOrUpdateRuleRequest model) {
+        [HttpPost("{authority}/{resourceId}/rules")]
+        public async Task<IActionResult> AddOrUpdateRule(string authority, string resourceId,[FromBody] AddOrUpdateRuleRequest model) {
             var command = _mapper.Map<AddOrUpdateRuleCommand>(model);
-            command.Resource = new Resource { ResourceId = resourceId, ResourceType = resourceType };
+            command.Resource = new Resource { Identifier = resourceId, Authority = authority};
 
             var result = await _policyService.AddOrUpdateRule(command);
 
@@ -115,10 +123,10 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpDelete("{resourceId}/{resourceType}/rules/{subjectId}")]
-        public async Task<IActionResult> DeleteRule(string resourceId, string resourceType, string subjectId) {
+        [HttpDelete("{authority}/{resourceId}/rules/{subjectId}")]
+        public async Task<IActionResult> DeleteRule(string authority, string resourceId, string subjectId) {
             var command = new DeleteRuleCommand {
-                Resource = new Resource { ResourceId = resourceId, ResourceType = resourceType },
+                Resource = new Resource { Identifier = resourceId, Authority = authority },
                 SubjectId = subjectId
             };
 
@@ -151,10 +159,20 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
         private IActionResult BuildErrorResponse<T>(CommandResult<T> result) {
             // Handle CommandResult<T> error responses
             if (result.ValidationResult?.IsValid() == false) {
-                return BadRequest(new ErrorResult {
-                    ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
-                    Errors = result.ErrorMessages
-                });
+
+                if (result.FailureCategory == CommandFailureCategory.ResourceConflict) {
+                    return Conflict(new ErrorResult {
+                        ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
+                        Errors = result.ErrorMessages
+                    });
+                }
+                else {
+
+                    return BadRequest(new ErrorResult {
+                        ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
+                        Errors = result.ErrorMessages
+                    });
+                }
             }
 
             if (result.FailureCategory == CommandFailureCategory.ResourceConflict) {
@@ -165,12 +183,22 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
         }
 
         private IActionResult BuildErrorResponse(CommandResult result) {
-            // Handle CommandResult error responses
+            // Handle CommandResult<T> error responses
             if (result.ValidationResult?.IsValid() == false) {
-                return BadRequest(new ErrorResult {
-                    ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
-                    Errors = result.ErrorMessages
-                });
+
+                if (result.FailureCategory == CommandFailureCategory.ResourceConflict) {
+                    return Conflict(new ErrorResult {
+                        ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
+                        Errors = result?.ErrorMessages
+                    });
+                }
+                else {
+
+                    return BadRequest(new ErrorResult {
+                        ValidationResult = _mapper.Map<InternalValidationResult>(result.ValidationResult),
+                        Errors = result?.ErrorMessages
+                    });
+                }
             }
 
             if (result.FailureCategory == CommandFailureCategory.ResourceConflict) {

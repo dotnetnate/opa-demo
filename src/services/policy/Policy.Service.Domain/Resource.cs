@@ -5,9 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CitizensFinancialGroup.Threvw.Policies.Domain {
-    public class Resource {
-        public string ResourceId { get; set; } // The unique identifier for the resource
-        public string ResourceType { get; set; } // The type of resource (e.g., "application")
-        public List<string> Attributes { get; set; } = new(); // Optional attributes for the resource
+
+    /// <summary>
+    /// Represents a resource with an identifier, scope, type, and optional extended properties.
+    /// </summary>
+    public class Resource : ScopedIdentity {                
+        /// <summary>
+        /// Gets or sets the optional attributes for the resource.
+        /// </summary>
+        public Dictionary<string,string>? ExtendedProperties { get; set; } = new(); // Optional attributes for the resource
     }
 }

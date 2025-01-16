@@ -1,7 +1,7 @@
 ﻿
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
-using CitizensFinancialGroup.Threvw.Common;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
+using CitizensFinancialGroup.Elements;
 
 namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
     public interface ITenantService {

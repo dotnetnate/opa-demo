@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CommonLib\CommonLib.csproj" />
-    <ProjectReference Include="..\..\Elements.CQRS\Elements.CQRS.csproj" />
+    <ProjectReference Include="..\..\Elements.Data.MongoDb\Elements.Data.MongoDb.csproj" />
     <ProjectReference Include="..\Tenant.Service.Domain\Tenant.Domain.csproj" />
   </ItemGroup>
 

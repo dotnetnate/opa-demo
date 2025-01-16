@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CommonLib\CommonLib.csproj" />
+    <ProjectReference Include="..\..\Elements.Validation.FluentValidation\Elements.Validation.FluentValidation.csproj" />
     <ProjectReference Include="..\Policy.Service.Domain\Policy.Domain.csproj" />
     <ProjectReference Include="..\Policy.Service.Infrastructure\Policy.Infrastructure.csproj" />
   </ItemGroup>

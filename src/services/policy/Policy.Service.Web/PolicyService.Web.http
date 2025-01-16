@@ -1,0 +1,70 @@
+@Policy.Service.Web_HostAddress = https://localhost:7040
+@Variables.Resource.Id= {{$guid}}
+@Variables.Resource.Authority= https://myapp.com/types/account
+@Variables.Subject.Id= {{$guid}}
+@Variables.Subject.Authority= https://auth0.com/
+
+
+
+### Get the policy for a specific resource - should return 404 on first call
+GET {{Policy.Service.Web_HostAddress}}/policies/{{Variables.Resource.Authority}}/{{Variables.Resource.Id}}
+Accept: application/json
+
+###
+
+### Create a new Policy for the resource
+POST {{Policy.Service.Web_HostAddress}}/api/policies/{{Variables.Resource.Authority}}/{{Variables.Resource.Id}}
+Content-Type: application/json
+{
+  "resource": {
+    "authority": "{{Variables.Resource.Authority}}",
+    "id": "{{Variables.Resource.Id}}"
+  },
+  "rules": [
+    {
+      "subject": {
+        "id": "{{Variables.Subject.Id}}",
+        "authority": "{{Variables.Subject.Authority}}"
+      },
+      "privileges": [
+        {
+          "name": "TRANSFER_MONEY",
+          "conditions": [
+            {
+              "contextAttribute": "input.amount",
+              "operator": "LessThan",
+              "value": 5000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+###
+
+### Update an existing Policy
+PUT {{Policy.Service.Web_HostAddress}}/policies/{{Variables.Resource.Authority}}/{{Variables.Resource.Id}}
+Content-Type: application/json
+{
+  "policyNumber": "12345",
+  "policyHolderName": "John Doe",
+  "startDate": "2023-01-01",
+  "endDate": "2023-12-31"
+}
+
+###
+
+### Delete a Policy
+DELETE {{Policy.Service.Web_HostAddress}}/policies/{{Variables.Resource.Authority}}/{{Variables.Resource.Id}}
+Accept: application/json
+
+###
+
+
+### Get the policy for a specific resource
+GET {{Policy.Service.Web_HostAddress}}/policies/{{Variables.Resource.Authority}}/{{Variables.Resource.Id}}
+Accept: application/json
+
+###

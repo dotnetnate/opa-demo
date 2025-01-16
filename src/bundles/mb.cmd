@@ -21,7 +21,8 @@ if errorlevel 1 (
 )
 
 REM Copy the output file to the root bundles directory
-copy %OUTPUTFILE% ..\..\bundles\
+copy %OUTPUTFILE% ..\..\infrastructure\nginx\bundles\
+copy %OUTPUTFILE% ..\..\infrastructure\opa\bundles\
 
 REM Check if the copy was successful
 if errorlevel 1 (

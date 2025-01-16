@@ -98,6 +98,17 @@ namespace CitizensFinancialGroup.Elements.CQRS.Commands {
         /// <summary>
         /// Returns a default result indicating that there is a general runtime error.
         /// </summary>
+        /// <param name="errorMessages">(Optional) The error messages that occurred during processing.)</param>
+        /// <param name="executionException">(Optional) The exception that occurred during processing.</param>
+        /// <param name="failureCategory">The category to use when creating the result, if it's a failure..</param>
+        /// <returns>Returns an instance of <see cref="CommandResult"/> corresponding to a general failure.</returns>       
+        public static CommandResult<TResult> FailureResult<TResult>(InternalValidationResult? validationResult = null, IEnumerable<string>? errorMessages = null, Exception? executionException = null, CommandFailureCategory failureCategory = CommandFailureCategory.GeneralRuntimeError) {
+            return CreateResult<TResult>(CommandStatus.Failed, default(TResult), failureCategory, validationResult, errorMessages, executionException);
+        }
+
+        /// <summary>
+        /// Returns a default result indicating that there is a general runtime error.
+        /// </summary>
         /// <param name="status">The status of the operation.</param>
         /// <param name="failureCategory">The category to use when creating the result, if it's a failure..</param>
         /// <param name="validationResult">The result of the command validation.</param>

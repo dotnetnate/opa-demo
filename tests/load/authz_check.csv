@@ -1,0 +1,2 @@
+ResourceIdentifier,ResourceAuthority,SubjectIdentifier,SubjectAuthority,PermissionName
+b3d60d38-de74-4363-a516-52cc4e1958da,https://myapp.com/types/account,3af30e12-f24e-46b3-bb17-9a37cf7bedad,https://auth0.com/,TRANSFER_MONEY

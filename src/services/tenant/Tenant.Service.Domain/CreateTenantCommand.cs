@@ -1,4 +1,4 @@
-﻿using CitizensFinancialGroup.Elements.CQRS.Commands;
+﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;

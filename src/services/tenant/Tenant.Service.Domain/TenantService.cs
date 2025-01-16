@@ -9,12 +9,12 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 
-using CitizensFinancialGroup.Threvw.Common;
-using CitizensFinancialGroup.Threvw.Common.Identity;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements;
+using CitizensFinancialGroup.Elements.Security.Identity;
+using CitizensFinancialGroup.Elements.Validation;
 using Microsoft.Extensions.Logging;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

@@ -14,8 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CommonLib\CommonLib.csproj" />
-    <ProjectReference Include="..\..\Elements.CQRS\Elements.CQRS.csproj" />
+    <ProjectReference Include="..\..\Elements.ApplicationModel.Abstractions\Elements.ApplicationModel.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Elements.Core\Elements.Core.csproj" />
+    <ProjectReference Include="..\..\Elements.Validation.Abstractions\Elements.Validation.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Elements.Validation.FluentValidation\Elements.Validation.FluentValidation.csproj" />
   </ItemGroup>
 
 </Project>

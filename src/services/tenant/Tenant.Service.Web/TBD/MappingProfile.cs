@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements.Validation;
 using CitizensFinancialGroup.Threvw.Tenants.Domain;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants.Models;

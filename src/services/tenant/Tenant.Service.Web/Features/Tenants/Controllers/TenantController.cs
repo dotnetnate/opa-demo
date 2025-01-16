@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
-using CitizensFinancialGroup.Threvw.Common;
+using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 using CitizensFinancialGroup.Threvw.Tenants.Domain;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants.Models;
 using CitizensFinancialGroup.Threvw.Tenants.Service.Http.TBD;
@@ -25,8 +24,8 @@ namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants {
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTenants([FromQuery] FindTenantsRequest request) {
+        [HttpPost]
+        public async Task<IActionResult> FindTenants([FromBody] FindTenantsRequest request) {
                         
             var query = _mapper.Map<FindTenantsQuery>(request);
 

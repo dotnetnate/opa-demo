@@ -13,9 +13,10 @@ using System.Text.Json;
 using MongoDB.Bson;
 using System.Security.Claims;
 using Microsoft.OpenApi.Models;
-using CitizensFinancialGroup.Threvw.Common.Data.MongoDb;
-using CitizensFinancialGroup.Threvw.Common.Identity;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
+using CitizensFinancialGroup.Elements.Security.Identity;
+using CitizensFinancialGroup.Elements.Validation;
+using CitizensFinancialGroup.Elements.Validation.FluentValidation;
 
 
 

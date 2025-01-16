@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Features;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements.Validation;
 using CitizensFinancialGroup.Threvw.Policies.Domain;
 using CitizensFinancialGroup.Threvw.Tenants.Domain;
 
@@ -23,12 +23,14 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD {
             CreateMap<Features.Policies.Models.UpdatePolicyRequest, UpdatePolicyCommand>();
             CreateMap<Features.Policies.Models.AddOrUpdateRuleRequest, AddOrUpdateRuleCommand>();
             CreateMap<Features.Policies.Models.FindPoliciesRequest, FindPoliciesQuery>();
-            CreateMap<Features.Policies.Models.FindPolicyByResourceRequest, FindPolicyByResourceQuery>();
+            CreateMap<Features.Policies.Models.FindPolicyByResourceRequest, FindPolicyByResourceQuery>()
+                .ForPath(dest=>dest.Resource.Identifier, opt => opt.MapFrom(src => src.ResourceId))
+                .ForPath(dest => dest.Resource.Authority, opt => opt.MapFrom(src => src.Authority));
             CreateMap<Features.Policies.Models.DeleteRuleRequest, DeleteRuleCommand>();
 
             // Validation Mappings
             CreateMap<InternalValidationError, Features.Shared.Models.InternalValidationError>();
-            CreateMap<InternalValidationResult, Features.Shared.Models.InternalValidationResult>();
+            CreateMap<InternalValidationResult, Features.Shared.Models.InternalValidationResult>().ReverseMap();
         }
     }
 

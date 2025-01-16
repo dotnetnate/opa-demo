@@ -27,8 +27,8 @@ namespace data_generator
 
             [Option('o', "outputFolder", Default = "", HelpText = "Output folder name.")]
             public string OutputFolder { get; set; } = "";
-            [Option('t', "strategy", Default = "cfg.authz.rich.v3", HelpText = "Data generation strategy.")]
-            public string Strategy { get; set; } = "cfg.authz.rich.v3";
+            [Option('t', "strategy", Default = "cfg.authz.rich.v4", HelpText = "Data generation strategy.")]
+            public string Strategy { get; set; } = "cfg.authz.rich.v4";
 
             [Option('z', "storage", Default = "file", HelpText = "Storage method.")]
             public string Storage { get; set; } = "file";
@@ -36,6 +36,8 @@ namespace data_generator
 
         static void Main(string[] args)
         {
+
+            MongoDbPolicyRepositoryConfiguration.Configure();
 
             Parser.Default.ParseArguments<Options>(args)
                 .WithParsed<Options>(opts =>
@@ -55,7 +57,7 @@ namespace data_generator
             {
                 var client = new MongoClient("mongodb://root:example@localhost:27017");
                 var database = client.GetDatabase("opa-demo");
-                var collection = database.GetCollection<BsonDocument>("policies_rich_v3");
+                var collection = database.GetCollection<PolicyWrapper>("policies_current");
                 return new MongoPersistence(collection);
             });
 
@@ -78,6 +80,10 @@ namespace data_generator
             services.AddKeyedSingleton<IDataGenerationStrategy, RichDataGenerationStrategyV3>("cfg.authz.rich.v3", (sp, _) =>
             {
                 return new RichDataGenerationStrategyV3(sp.GetKeyedService<IPersistence>(options.Storage));
+            });
+                        services.AddKeyedSingleton<IDataGenerationStrategy, RichDataGenerationStrategyV4>("cfg.authz.rich.v4", (sp, _) =>
+            {
+                return new RichDataGenerationStrategyV4(sp.GetKeyedService<IPersistence>(options.Storage));
             });
             services.AddKeyedSingleton<IDataGenerationStrategy, FlattenedDataGenerationStrategy>("cfg.authz.flattened", (sp, _) =>
             {

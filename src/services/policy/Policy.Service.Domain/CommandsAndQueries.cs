@@ -1,5 +1,5 @@
-﻿using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,8 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
     #region Queries
 
     public class FindPoliciesQuery : QueryBase {
-        public required PolicyFilter Filter { get; set; } // Filtering criteria for policies
+        public Resource? ResourceFilter { get; set; }
+        public Subject? SubjectFilter { get; set; }        
         public int PageNumber { get; set; } = 1; // The page number for pagination
         public int PageSize { get; set; } = 10; // The number of items per page
     }

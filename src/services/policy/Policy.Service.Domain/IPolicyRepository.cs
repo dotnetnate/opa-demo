@@ -2,13 +2,16 @@ using System.Threading.Tasks;
 
 namespace CitizensFinancialGroup.Threvw.Policies.Domain {
 
+    /// <summary>
+    /// Repository for managing policies and related constructs such as policy definitions, etc.
+    /// </summary>
     public interface IPolicyRepository {
         /// <summary>
         /// Retrieves a single policy based on the resource.
         /// </summary>
         /// <param name="resource">The resource used to identify the policy.</param>
         /// <returns>The policy if found, otherwise null.</returns>
-        Task<Policy> GetPolicy(Resource resource);
+        Task<Policy?> FindPolicyByResource(FindPolicyByResourceQuery query);
 
         /// <summary>
         /// Finds policies based on filtering criteria and paging options.
@@ -17,7 +20,7 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         /// <param name="pageNumber">The page number for pagination.</param>
         /// <param name="pageSize">The size of each page for pagination.</param>
         /// <returns>A collection of policies that match the criteria.</returns>
-        Task<IEnumerable<Policy>> FindPolicies(PolicyFilter filter, int pageNumber, int pageSize);
+        Task<IEnumerable<Policy>> FindPolicies(FindPoliciesQuery query);
 
         /// <summary>
         /// Creates a new policy in the repository.

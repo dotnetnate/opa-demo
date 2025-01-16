@@ -1,9 +1,9 @@
-﻿using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
+using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
 
-using CitizensFinancialGroup.Threvw.Common;
-using CitizensFinancialGroup.Threvw.Common.Identity;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements;
+using CitizensFinancialGroup.Elements.Security.Identity;
+using CitizensFinancialGroup.Elements.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;

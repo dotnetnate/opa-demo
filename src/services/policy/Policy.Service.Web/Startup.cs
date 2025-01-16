@@ -12,16 +12,22 @@ using System.Text.Json;
 using MongoDB.Bson;
 using System.Security.Claims;
 using Microsoft.OpenApi.Models;
-using CitizensFinancialGroup.Threvw.Common.Data.MongoDb;
+using CitizensFinancialGroup.Elements.Data.MongoDb;
 using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Common.Identity;
+using CitizensFinancialGroup.Elements.Security.Identity;
 using CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using CitizensFinancialGroup.Elements.Validation;
+using System.Text.Json.Serialization;
+using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
+using System.Diagnostics.CodeAnalysis;
+using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
+using CitizensFinancialGroup.Elements.Validation.FluentValidation;
 
 
 
 
 namespace CitizensFinancialGroup.Threvw.Policies.Service.Http {
+    [ExcludeFromCodeCoverage]
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;            
@@ -97,7 +103,10 @@ namespace CitizensFinancialGroup.Threvw.Policies.Service.Http {
             // Register the controller
             services.AddControllers()
                   .AddJsonOptions(options => {
-                      options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;                      
+                      options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                      options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;                      
+                      options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                      options.JsonSerializerOptions.Converters.Add(new ConditionModelJsonConverter());
                   });
 
             services.AddSingleton<IValidationService, FluentValidationValidationService>();

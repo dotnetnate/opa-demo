@@ -1,4 +1,4 @@
-﻿using CitizensFinancialGroup.Threvw.Common.Data.MongoDb;
+﻿using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
 using CitizensFinancialGroup.Threvw.Tenants.Domain;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  opa:
+    image: ghcr.io/styrainc/enterprise-opa:1.30.0
+    ports:
+      - "8181:8181"
+    command: "run --server --config-file /opa-config.yaml --addr=0.0.0.0:8181"
+    environment:
+      EOPA_LICENSE_KEY: A6C90F-A17840-DB0781-A1E35C-868E95-V3
+    volumes:
+      - ./opa/opa-config.yaml:/opa-config.yaml
+      - opa_data:/opt/opa/data        
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+
+  oauth:
+    image: opa-demo-oauth-mock-server:latest
+    ports:
+      - "8081:9000"
+    environment:            
+      - TENANT_ID={dedf9bbb-a700-444b-b576-7bf93859f73d}
+    volumes:
+      - ../certs:/app/certs      
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:      
+      - ./nginx/bundles:/usr/share/nginx/html/bundles
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  vault:
+    image: hashicorp/vault:latest
+    volumes:
+      - ./vault/config:/vault/config
+      - ./vault/policies:/vault/policies
+      - ./vault/data:/vault/data
+    ports:
+      - 8200:8200
+    environment:
+      - VAULT_ADDR=http://0.0.0.0:8200
+      - VAULT_API_ADDR=http://0.0.0.0:8200
+      - VAULT_ADDRESS=http://0.0.0.0:8200            
+    cap_add:
+      - IPC_LOCK
+    command: vault server -config=/vault/config/vault.json
+
+volumes:
+  mongo_data:
+  opa_data:

@@ -1,0 +1,18 @@
+services:
+  - name: bundle-service
+    url: http://nginx
+
+decision_logs:
+  console: false
+
+bundles:  
+  dummy:
+    service: bundle-service
+    resource: /bundles/dummy.tar.gz
+  mega:
+    service: bundle-service
+    resource: /bundles/mega.tar.gz        
+    polling:
+      min_delay_seconds: 15
+      max_delay_seconds: 30
+    
