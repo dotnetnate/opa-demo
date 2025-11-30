@@ -12,6 +12,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using DomainPolicy = CitizensFinancialGroup.Threvw.Policies.Domain.Policy;
 
 namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
     [TestClass]
@@ -26,8 +27,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPoliciesRequest();
             var query = new FindPoliciesQuery();
-            var policies = new List<Policy>();
-            var queryResult = QueryResult<IEnumerable<Policy>>.SuccessResult(policies);
+            var policies = new List<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>();
+            var queryResult = QueryResult<IEnumerable<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>>.SuccessResult(policies);
             var policyModels = new List<PolicyModel>();
 
             mockMapper.Setup(m => m.Map<FindPoliciesQuery>(request)).Returns(query);
@@ -54,8 +55,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPolicyByResourceRequest { Authority = "authority", ResourceId = "resourceId" };
             var query = new FindPolicyByResourceQuery { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var queryResult = QueryResult<Policy>.SuccessResult(policy);
+            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var queryResult = QueryResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<FindPolicyByResourceQuery>(request)).Returns(query);
@@ -82,8 +83,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var model = new CreatePolicyRequest { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" }, Rules = new List<RuleModel>() };
             var command = new CreatePolicyCommand { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult<Policy>.SuccessResult(policy);
+            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<CreatePolicyCommand>(model)).Returns(command);
@@ -112,8 +113,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var model = new UpdatePolicyRequest { Rules = new List<RuleModel>() };
             var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = resourceId, Authority = authority } };
-            var policy = new Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult<Policy>.SuccessResult(policy);
+            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<UpdatePolicyCommand>(model)).Returns(command);
@@ -189,7 +190,9 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var resourceId = "resourceId";
             var subjectId = "subjectId";
-            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, SubjectId = subjectId };
+            var subjectAuthority = "authority";
+            var subject = new Subject { Identifier = subjectId, Authority = subjectAuthority };
+            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, Subject = subject };
             var commandResult = CommandResult.SuccessResult();
 
             mockPolicyService.Setup(s => s.DeleteRule(It.IsAny<DeleteRuleCommand>())).ReturnsAsync(commandResult);
@@ -197,7 +200,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var controller = new PolicyController(mockPolicyService.Object, mockLogger.Object, mockMapper.Object);
 
             // Act
-            var result = await controller.DeleteRule(authority, resourceId, subjectId);
+            var result = await controller.DeleteRule(authority, resourceId, subjectAuthority, subjectId);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(NoContentResult));
@@ -211,7 +214,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPoliciesRequest();
             var query = new FindPoliciesQuery();
-            var queryResult = QueryResult<IEnumerable<Policy>>.FailureResult(executionException: new Exception("this is an error."), validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
+            var queryResult = QueryResult<IEnumerable<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>>.FailureResult(executionException: new Exception("this is an error."), validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
                 Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
 
@@ -236,7 +239,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPolicyByResourceRequest { Authority = "authority", ResourceId = "resourceId" };
             var query = new FindPolicyByResourceQuery { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var queryResult = QueryResult<Policy>.FailureResult(failureCategory: QueryFailureCategory.ResourceNotFound);
+            var queryResult = QueryResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.FailureResult(failureCategory: QueryFailureCategory.ResourceNotFound);
 
             mockMapper.Setup(m => m.Map<FindPolicyByResourceQuery>(request)).Returns(query);
             mockPolicyService.Setup(s => s.GetPolicyByResource(query)).ReturnsAsync(queryResult);
@@ -260,8 +263,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var model = new CreatePolicyRequest { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" }, Rules = new List<RuleModel>() };
             var command = new CreatePolicyCommand { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult.FailureResult<Policy>((Policy)null,  failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
+            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult.FailureResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>((CitizensFinancialGroup.Threvw.Policies.Domain.Policy)null,  failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
                 Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
@@ -290,7 +293,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var model = new UpdatePolicyRequest { Rules = new List<RuleModel>() };
             var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = resourceId, Authority = authority } };
-            var commandResult = CommandResult<Policy>.FailureResult((Policy?)null, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult { Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
+            var commandResult = CommandResult<DomainPolicy>.FailureResult((DomainPolicy?)null, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult { Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
 
             mockMapper.Setup(m => m.Map<UpdatePolicyCommand>(model)).Returns(command);
             mockPolicyService.Setup(s => s.UpdatePolicy(command)).ReturnsAsync(commandResult);
@@ -364,7 +367,9 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var resourceId = "resourceId";
             var subjectId = "subjectId";
-            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, SubjectId = subjectId };
+            var subjectAuthority = "authority";
+            var subject = new Subject { Identifier = subjectId, Authority = subjectAuthority };
+            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, Subject = subject };
             var commandResult = CommandResult.FailureResult("Error", validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
                 Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
@@ -375,7 +380,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var controller = new PolicyController(mockPolicyService.Object, mockLogger.Object, mockMapper.Object);
 
             // Act
-            var result = await controller.DeleteRule(authority, resourceId, subjectId);
+            var result = await controller.DeleteRule(authority, resourceId, subjectAuthority, subjectId);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));

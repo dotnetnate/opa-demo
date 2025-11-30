@@ -9,8 +9,13 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
     public class PrivilegeValidator : AbstractValidator<Privilege> {
         public PrivilegeValidator() {
             RuleFor(p => p.PermissionName).NotEmpty();
-            RuleFor(p=> p.HasValidityPeriodLapsed()).Equal(false).WithMessage("The validity period has lapsed.");
-            RuleForEach(p => p.Conditions).SetValidator(new ConditionValidator());
+            
+            RuleFor(p => p.EffectRules)
+                .NotEmpty()
+                .WithMessage("At least one effect rule is required.");
+                
+            RuleForEach(p => p.EffectRules)
+                .SetValidator(new EffectRuleValidator());
         }
     }
 }

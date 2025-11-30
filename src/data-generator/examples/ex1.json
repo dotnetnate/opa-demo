@@ -1,54 +1,140 @@
 {
-    "policyId": "56236f22-a36b-4c96-81b4-49948a4cea85-policy",
-    "policyDescription": "An example policy for an object",
+    "policyId": "00000000-0000-0000-0000-000000000000",
+    "policyDescription": "Example XACML-aligned access control policy with obligations and advice",
     "resource": {
-        "resourceId": "56236f22-a36b-4c96-81b4-49948a4cea85",
-        "resourceType": "account",
-        "attributes": []
+        "resourceId": "account-123",
+        "resourceType": "account"
     },
     "rules": [
         {
             "subject": {
-                "identifier": "9d474bc1-d4ea-4d5c-b7bb-11324080db56",
-                "type": "user",
+                "identifier": "user-456",
                 "authority": "https://auth0.com/"
             },
             "privileges": {
-                "PERMITTED_PERMISSION_0": {
-                    "effect": "permit",
-                    "conditions": [
+                "READ": {
+                    "combiningAlgorithm": "firstApplicable",
+                    "effectRules": [
                         {
-                            "attribute": "amount",
-                            "operator": "eq",
-                            "value": 500
+                            "effect": "permit",
+                            "conditions": [],
+                            "obligations": [
+                                {
+                                    "type": "logging",
+                                    "parameters": {
+                                        "level": "info",
+                                        "category": "account-access"
+                                    }
+                                }
+                            ],
+                            "advice": []
                         }
-                    ]
+                    ],
+                    "defaultEffect": "deny"
                 },
-                "DENIED_PERMISSION_0": {
-                    "effect": "deny"
-                },
-                "PERMITTED_PERMISSION_1": {
-                    "effect": "permit",
-                    "conditions": [
+                "WIRE_TRANSFER": {
+                    "combiningAlgorithm": "firstApplicable",
+                    "effectRules": [
                         {
-                            "attribute": "amount",
-                            "operator": "eq",
-                            "value": 500
-                        }
-                    ]
-                },
-                "DENIED_PERMISSION_1": {
-                    "effect": "deny"
-                },
-                "PERMITTED_PERMISSION_2": {
-                    "effect": "permit",
-                    "conditions": [
+                            "effect": "permit",
+                            "conditions": [
+                                {
+                                    "attribute": "amount",
+                                    "operator": "lt",
+                                    "value": 10000
+                                }
+                            ],
+                            "obligations": [
+                                {
+                                    "type": "logging",
+                                    "parameters": {
+                                        "level": "info",
+                                        "category": "financial-transaction"
+                                    }
+                                }
+                            ],
+                            "advice": []
+                        },
                         {
-                            "attribute": "amount",
-                            "operator": "eq",
-                            "value": 500
+                            "effect": "permit",
+                            "conditions": [
+                                {
+                                    "attribute": "amount",
+                                    "operator": "gte",
+                                    "value": 10000
+                                },
+                                {
+                                    "attribute": "amount",
+                                    "operator": "lt",
+                                    "value": 100000
+                                }
+                            ],
+                            "obligations": [
+                                {
+                                    "type": "approval",
+                                    "parameters": {
+                                        "approvalType": "manager",
+                                        "minApprovers": 1
+                                    }
+                                },
+                                {
+                                    "type": "logging",
+                                    "parameters": {
+                                        "level": "warning",
+                                        "category": "high-value-transaction"
+                                    }
+                                }
+                            ],
+                            "advice": [
+                                {
+                                    "type": "monitor",
+                                    "parameters": {
+                                        "flagForReview": true,
+                                        "riskScore": "medium"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "effect": "deny",
+                            "conditions": [
+                                {
+                                    "attribute": "amount",
+                                    "operator": "gte",
+                                    "value": 100000
+                                }
+                            ],
+                            "obligations": [
+                                {
+                                    "type": "notification",
+                                    "parameters": {
+                                        "recipient": "security-team",
+                                        "reason": "Transfer amount exceeds user limit"
+                                    }
+                                }
+                            ],
+                            "advice": []
                         }
-                    ]
+                    ],
+                    "defaultEffect": "deny"
+                },
+                "WRITE": {
+                    "combiningAlgorithm": "firstApplicable",
+                    "effectRules": [
+                        {
+                            "effect": "deny",
+                            "conditions": [
+                                {
+                                    "attribute": "status",
+                                    "operator": "neq",
+                                    "value": "active"
+                                }
+                            ],
+                            "obligations": [],
+                            "advice": []
+                        }
+                    ],
+                    "defaultEffect": "permit"
                 }
             }
         }

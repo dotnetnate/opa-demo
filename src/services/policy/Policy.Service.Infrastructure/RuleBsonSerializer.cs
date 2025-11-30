@@ -32,18 +32,19 @@ namespace CitizensFinancialGroup.Threvw.Policies.Infrastructure {
                 context.Writer.WriteName(privilege.PermissionName);
                 context.Writer.WriteStartDocument();
 
-                context.Writer.WriteName("effect");
-                context.Writer.WriteString(Enum.GetName(typeof(PermissionActions), privilege.Effect));                
+                // Serialize combining algorithm
+                context.Writer.WriteName("combiningAlgorithm");
+                context.Writer.WriteString(Enum.GetName(typeof(CombiningAlgorithm), privilege.CombiningAlgorithm));
 
-                if (privilege.Conditions != null) {
-                    context.Writer.WriteName("conditions");
-                    BsonSerializer.Serialize(context.Writer, privilege.Conditions);
+                // Serialize effect rules
+                if (privilege.EffectRules != null && privilege.EffectRules.Count > 0) {
+                    context.Writer.WriteName("effectRules");
+                    BsonSerializer.Serialize(context.Writer, privilege.EffectRules);
                 }
 
-                if (privilege.ValidityPeriod != null) {
-                    context.Writer.WriteName("validityPeriod");
-                    BsonSerializer.Serialize(context.Writer, privilege.ValidityPeriod);
-                }
+                // Serialize default effect
+                context.Writer.WriteName("defaultEffect");
+                context.Writer.WriteString(Enum.GetName(typeof(PermissionActions), privilege.DefaultEffect));
 
                 context.Writer.WriteEndDocument();
             }
@@ -74,40 +75,41 @@ namespace CitizensFinancialGroup.Threvw.Policies.Infrastructure {
                         // Read privilege name (key)
                         var privilegeName = context.Reader.ReadName();
 
-
-
                         var privilege = new Privilege { PermissionName = privilegeName };
 
                         // Start reading the privilege details
                         context.Reader.ReadStartDocument();
 
-                        if( context.Reader.FindElement("effect")) {
-                            privilege.Effect = (PermissionActions)Enum.Parse(
-                                typeof(PermissionActions),
-                                context.Reader.ReadString(),
-                                true // Ignore case
-                            );
-                        }
                         try {
-
-                            // Read "conditions" if present
-                            if (context.Reader.FindElement("conditions")) {
-                                privilege.Conditions = BsonSerializer.Deserialize<List<Condition>>(context.Reader);
+                            // Read "combiningAlgorithm" if present
+                            if (context.Reader.FindElement("combiningAlgorithm")) {
+                                privilege.CombiningAlgorithm = (CombiningAlgorithm)Enum.Parse(
+                                    typeof(CombiningAlgorithm),
+                                    context.Reader.ReadString(),
+                                    true // Ignore case
+                                );
                             }
 
-                            // Read "validityPeriod" if present
-                            if (context.Reader.FindElement("validityPeriod")) {
-                                privilege.ValidityPeriod = BsonSerializer.Deserialize<Range<DateTimeOffset>>(context.Reader);
+                            // Read "effectRules" if present
+                            if (context.Reader.FindElement("effectRules")) {
+                                privilege.EffectRules = BsonSerializer.Deserialize<List<EffectRule>>(context.Reader);
+                            }
+
+                            // Read "defaultEffect" if present
+                            if (context.Reader.FindElement("defaultEffect")) {
+                                privilege.DefaultEffect = (PermissionActions)Enum.Parse(
+                                    typeof(PermissionActions),
+                                    context.Reader.ReadString(),
+                                    true // Ignore case
+                                );
                             }
                         }
                         catch {
-
+                            // Ignore errors during deserialization
                         }
-                        finally{
+                        finally {
                             context.Reader.ReadEndDocument();
                         }
-
-                        //context.Reader.ReadEndDocument(); // End privilege details
 
                         parsedPrivileges.Add(privilege);
                     }

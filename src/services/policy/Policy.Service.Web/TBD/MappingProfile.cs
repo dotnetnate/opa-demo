@@ -16,6 +16,9 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD {
             CreateMap<Rule, Features.Policies.Models.RuleModel>().ReverseMap();
             CreateMap<Subject, Features.Policies.Models.SubjectModel>().ReverseMap();
             CreateMap<Privilege, Features.Policies.Models.PrivilegeModel>().ReverseMap();
+            CreateMap<EffectRule, Features.Policies.Models.EffectRuleModel>().ReverseMap();
+            CreateMap<Obligation, Features.Policies.Models.ObligationModel>().ReverseMap();
+            CreateMap<Advice, Features.Policies.Models.AdviceModel>().ReverseMap();
             CreateMap<Condition, Features.Policies.Models.ConditionModel>().ReverseMap();
 
             // Request-to-Domain Mappings

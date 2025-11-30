@@ -191,7 +191,7 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
                 }
                 catch (KeyNotFoundException ex) {
                     Logger.LogError(ex, "Policy not found for resource: {Resource}", command.Resource);
-                    return CommandResult.NotFoundResult(
+                    return CommandResult.FailureResult(
                         validationResult: new InternalValidationResult {
                             Errors =
                             [

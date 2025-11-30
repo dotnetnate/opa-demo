@@ -6,33 +6,30 @@ using System.Threading.Tasks;
 
 namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
     /// <summary>
-    /// Represents a privilege with a name, visibility settings, and associated conditions.
+    /// Represents a privilege with a permission name and multiple effect rules.
+    /// Based on XACML policy model with support for conditional effects, obligations, and advice.
     /// </summary>
     public class Privilege {
         /// <summary>
-        /// Gets or sets the name of the permission (e.g., "PERMISSION_1").
+        /// Gets or sets the name of the permission (e.g., "READ", "WRITE", "WIRE_TRANSFER").
         /// </summary>
         public required string PermissionName { get; set; }
+        
         /// <summary>
-        /// Gets or sets the list of conditions associated with the privilege.
+        /// How to combine results when multiple effect rules match.
+        /// Defaults to FirstApplicable (first matching rule wins).
         /// </summary>
-        public List<Condition> Conditions { get; set; } = new();
+        public CombiningAlgorithm CombiningAlgorithm { get; set; } = CombiningAlgorithm.FirstApplicable;
+        
         /// <summary>
-        /// Gets or sets the validity period of the privilege rule. If this is null, the rule is always valid,
-        /// otherwise it is only checked as long as the execution time occurs within the validity period.
+        /// List of effect rules evaluated according to the combining algorithm.
+        /// Each rule specifies an effect (Permit/Deny) with optional conditions, obligations, and advice.
         /// </summary>
-        public Range<DateTimeOffset>? ValidityPeriod { get; set; }
+        public List<EffectRule> EffectRules { get; set; } = new();
+        
         /// <summary>
-        /// Gets or sets the action to perform with respect to the permission.
+        /// Default effect if no rules match. Defaults to Deny for secure-by-default behavior.
         /// </summary>
-        public PermissionActions Action { get; set; }
-        /// <summary>
-        /// Indicates if the validity period is passed. When new rules are added with invalid validity periods (i.e. periods that end before today)
-        /// they will not pass validation.
-        /// </summary>
-        /// <returns>Returns <c>true</c> if the period has lapsed, <c>false</c> otherwise.</returns>
-        public bool HasValidityPeriodLapsed() {
-            return ValidityPeriod != null && DateTimeOffset.Now.CompareTo(ValidityPeriod.End) > 0;
-        }
+        public PermissionActions DefaultEffect { get; set; } = PermissionActions.Deny;
     }
 }

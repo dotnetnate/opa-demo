@@ -105,15 +105,39 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Mo
     }
 
     public class PrivilegeModel {
-        public required string PermissionName { get; set; } // Name of the privilege (e.g., "PERMISSION_1")
-        public required List<ConditionModel> Conditions { get; set; } = new(); // Conditions for the privilege
+        public required string PermissionName { get; set; } // Name of the privilege (e.g., "READ", "WRITE")
+        public CombiningAlgorithm CombiningAlgorithm { get; set; } = CombiningAlgorithm.FirstApplicable; // How to combine multiple effect rules
+        public List<EffectRuleModel> EffectRules { get; set; } = new(); // Effect rules with conditions, obligations, and advice
+        public PermissionActions DefaultEffect { get; set; } = PermissionActions.Deny; // Default effect if no rules match
+    }
 
-        public Range<DateTimeOffset>? ValidityPeriod { get; set; }
+    public enum CombiningAlgorithm {
+        [Description("firstApplicable")]
+        FirstApplicable = 0,
+        [Description("denyOverrides")]
+        DenyOverrides = 1,
+        [Description("permitOverrides")]
+        PermitOverrides = 2,
+        [Description("onlyOneApplicable")]
+        OnlyOneApplicable = 3
+    }
 
-        /// <summary>
-        /// Gets or sets the action to perform with respect to the permission.
-        /// </summary>
-        public PermissionActions Effect { get; set; }
+    public class EffectRuleModel {
+        public PermissionActions Effect { get; set; } // Permit or Deny
+        public List<ConditionModel> Conditions { get; set; } = new(); // Conditions for this rule
+        public Range<DateTimeOffset>? ValidityPeriod { get; set; } // Temporal validity
+        public List<ObligationModel> Obligations { get; set; } = new(); // Obligations that must be fulfilled
+        public List<AdviceModel> Advice { get; set; } = new(); // Advisory information
+    }
+
+    public class ObligationModel {
+        public required string Type { get; set; } // Obligation type (e.g., "approval", "mfa", "logging")
+        public Dictionary<string, object> Parameters { get; set; } = new(); // Type-specific parameters
+    }
+
+    public class AdviceModel {
+        public required string Type { get; set; } // Advice type (e.g., "audit", "monitor")
+        public Dictionary<string, object> Parameters { get; set; } = new(); // Type-specific parameters
     }
 
     /// <summary>

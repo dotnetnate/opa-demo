@@ -13,8 +13,8 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
     }
 
     public class Advice {
-        public string Id { get; set; }
-        public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
+        public required string Type { get; set; }
+        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
     }
 
     public enum Decisions {        
@@ -25,8 +25,8 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
     }
 
     public class Obligation {
-        public string Id { get; set; }
-        public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
+        public required string Type { get; set; }
+        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
     }
 }
 

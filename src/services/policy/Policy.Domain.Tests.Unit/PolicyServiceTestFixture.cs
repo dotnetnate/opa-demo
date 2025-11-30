@@ -152,7 +152,7 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
             var command = new CreatePolicyCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Rules = new List<Rule>() };
             var policy = new Policy { Resource = command.Resource, Rules = command.Rules };
             policyRepositoryMock.Setup(repo => repo.CreatePolicy(It.IsAny<Policy>()))
-                .Throws(new InvalidOperationException());
+                .ThrowsAsync(new InvalidOperationException());
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 
@@ -178,10 +178,10 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
                 loggerMock.Object
             );
 
-            var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Rules = new List<Rule>() };
+            var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Rules = new List<Rule>(), ETag = null };
             var policy = new Policy { Resource = command.Resource, Rules = command.Rules };
-            policyRepositoryMock.Setup(repo => repo.UpdatePolicy(command.Resource, policy))
-                .Returns(Task.CompletedTask);
+            policyRepositoryMock.Setup(repo => repo.UpdatePolicy(It.IsAny<Resource>(), It.IsAny<Policy>(), It.IsAny<string?>()))
+                .ReturnsAsync(true);
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 
@@ -212,8 +212,8 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
 
             var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Rules = new List<Rule>() };
             var policy = new Policy { Resource = command.Resource, Rules = command.Rules };
-            policyRepositoryMock.Setup(repo => repo.UpdatePolicy(It.IsAny<Resource>(), It.IsAny<Policy>()))
-                .Throws(new InvalidOperationException());
+            policyRepositoryMock.Setup(repo => repo.UpdatePolicy(It.IsAny<Resource>(), It.IsAny<Policy>(), null))
+                .ThrowsAsync(new InvalidOperationException());
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 
@@ -240,8 +240,8 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
             );
 
             var command = new DeletePolicyCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() } };
-            policyRepositoryMock.Setup(repo => repo.DeletePolicy(command.Resource))
-                .Returns(Task.CompletedTask);
+            policyRepositoryMock.Setup(repo => repo.DeletePolicy(command.Resource, null))
+                .ReturnsAsync(true);
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 
@@ -267,8 +267,8 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
             );
 
             var command = new AddOrUpdateRuleCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Rule = new Rule { Subject = new Subject { Identifier = "SubjectId", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() } } };
-            policyRepositoryMock.Setup(repo => repo.AddOrUpdateRule(command.Resource, command.Rule))
-                .Returns(Task.CompletedTask);
+            policyRepositoryMock.Setup(repo => repo.AddOrUpdateRule(command.Resource, command.Rule, null))
+                .ReturnsAsync(true);
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 
@@ -293,9 +293,10 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
                 loggerMock.Object
             );
 
-            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, SubjectId = "subjectId" };
-            policyRepositoryMock.Setup(repo => repo.DeleteRule(command.Resource, command.SubjectId))
-                .Returns(Task.CompletedTask);
+            var subject = new Subject { Identifier = "subjectId", Authority = "Authority", ExtendedProperties = new Dictionary<string, string>() };
+            var command = new DeleteRuleCommand { Resource = new Resource { Identifier = "1", Authority = "Authority",  ExtendedProperties = new Dictionary<string, string>() }, Subject = subject };
+            policyRepositoryMock.Setup(repo => repo.DeleteRule(command.Resource, command.Subject, null))
+                .ReturnsAsync(true);
             validationServiceMock.Setup(service => service.Validate(It.IsAny<object>()))
                 .ReturnsAsync(new InternalValidationResult());
 

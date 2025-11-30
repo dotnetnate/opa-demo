@@ -86,7 +86,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             command.Resource = new Resource { Identifier = resourceId, Authority = authority};
             
             // Get ETag from If-Match header if not in body
-            if (string.IsNullOrEmpty(command.ETag) && Request.Headers.ContainsKey("If-Match")) {
+            if (string.IsNullOrEmpty(command.ETag) && Request?.Headers?.ContainsKey("If-Match") == true) {
                 command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
             }
             
@@ -112,7 +112,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             };
 
             // Get ETag from If-Match header
-            if (Request.Headers.ContainsKey("If-Match")) {
+            if (Request?.Headers?.ContainsKey("If-Match") == true) {
                 command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
             }
 
@@ -132,7 +132,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             command.Resource = new Resource { Identifier = resourceId, Authority = authority};
 
             // Get ETag from If-Match header if not in body
-            if (string.IsNullOrEmpty(command.ETag) && Request.Headers.ContainsKey("If-Match")) {
+            if (string.IsNullOrEmpty(command.ETag) && Request?.Headers?.ContainsKey("If-Match") == true) {
                 command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
             }
 
@@ -154,7 +154,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             };
 
             // Get ETag from If-Match header
-            if (Request.Headers.ContainsKey("If-Match")) {
+            if (Request?.Headers?.ContainsKey("If-Match") == true) {
                 command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
             }
 

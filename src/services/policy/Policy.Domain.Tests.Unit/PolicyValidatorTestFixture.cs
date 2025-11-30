@@ -17,7 +17,15 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
                         Subject = new Subject {  Authority = "https://someuri.org", Identifier = "id" },
                         Privileges = new List<Privilege>
                         {
-                            new Privilege { PermissionName = "PERMISSION_1" }
+                            new Privilege {
+                                PermissionName = "PERMISSION_1",
+                                EffectRules = new List<EffectRule> {
+                                    new EffectRule {
+                                        Effect = PermissionActions.Permit,
+                                        Conditions = new List<Condition>()
+                                    }
+                                }
+                            }
                         }
                     }
                 }

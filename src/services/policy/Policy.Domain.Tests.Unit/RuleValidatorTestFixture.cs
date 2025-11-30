@@ -18,7 +18,15 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
             var rule = new Rule {
                 Subject = new Subject { Authority = "https://someuri.org/", Identifier = "SomeId" },
                 Privileges = new List<Privilege> {
-                    new Privilege { PermissionName = "PERMISSION_1" }
+                    new Privilege {
+                        PermissionName = "PERMISSION_1",
+                        EffectRules = new List<EffectRule> {
+                            new EffectRule {
+                                Effect = PermissionActions.Permit,
+                                Conditions = new List<Condition>()
+                            }
+                        }
+                    }
                 }
             };
 
@@ -35,7 +43,15 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
             var rule = new Rule {
                 Subject = null,
                 Privileges = new List<Privilege> {
-                    new Privilege { PermissionName = "PERMISSION_1" }
+                    new Privilege {
+                        PermissionName = "PERMISSION_1",
+                        EffectRules = new List<EffectRule> {
+                            new EffectRule {
+                                Effect = PermissionActions.Permit,
+                                Conditions = new List<Condition>()
+                            }
+                        }
+                    }
                 }
             };
 

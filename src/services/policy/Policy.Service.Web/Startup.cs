@@ -14,6 +14,7 @@ using System.Security.Claims;
 using Microsoft.OpenApi.Models;
 using CitizensFinancialGroup.Elements.Data.MongoDb;
 using CitizensFinancialGroup.Threvw.Policies.Domain;
+using CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms;
 using CitizensFinancialGroup.Elements.Security.Identity;
 using CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD;
 using CitizensFinancialGroup.Elements.Validation;
@@ -83,6 +84,19 @@ namespace CitizensFinancialGroup.Threvw.Policies.Service.Http {
             // Register the service
             services.AddScoped<IPolicyService, PolicyService<object>>();
 
+            // Register the policy evaluation services (PDP)
+            services.AddScoped<IValueComparer, ValueComparer>();
+            services.AddScoped<IConditionEvaluator, ConditionEvaluator>();
+            
+            // Register combining algorithm strategies
+            services.AddScoped<ICombiningAlgorithmStrategy, FirstApplicableStrategy>();
+            services.AddScoped<ICombiningAlgorithmStrategy, DenyOverridesStrategy>();
+            services.AddScoped<ICombiningAlgorithmStrategy, PermitOverridesStrategy>();
+            services.AddScoped<ICombiningAlgorithmStrategy, OnlyOneApplicableStrategy>();
+            services.AddScoped<ICombiningAlgorithmStrategyResolver, CombiningAlgorithmStrategyResolver>();
+            
+            services.AddScoped<IPrivilegeEvaluator, PrivilegeEvaluator>();
+            services.AddScoped<IPolicyEvaluationService, PolicyEvaluationService>();
 
             // Register AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));
