@@ -33,27 +33,36 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         /// </summary>
         /// <param name="resource">The resource used to identify the policy.</param>
         /// <param name="policy">The updated policy data.</param>
-        Task UpdatePolicy(Resource resource, Policy policy);
+        /// <param name="expectedETag">The expected ETag for optimistic concurrency control. Null to skip check.</param>
+        /// <returns>True if update succeeded, false if ETag mismatch.</returns>
+        Task<bool> UpdatePolicy(Resource resource, Policy policy, string? expectedETag);
 
         /// <summary>
         /// Deletes a policy identified by the resource.
         /// </summary>
         /// <param name="resource">The resource used to identify the policy.</param>
-        Task DeletePolicy(Resource resource);
+        /// <param name="expectedETag">The expected ETag for optimistic concurrency control. Null to skip check.</param>
+        /// <returns>True if delete succeeded, false if ETag mismatch.</returns>
+        Task<bool> DeletePolicy(Resource resource, string? expectedETag);
 
         /// <summary>
         /// Adds or updates a rule within a policy identified by the resource.
+        /// Replaces entire rule if it exists (matched by subject authority + identifier).
         /// </summary>
         /// <param name="resource">The resource used to identify the policy.</param>
         /// <param name="rule">The rule to add or update.</param>
-        Task AddOrUpdateRule(Resource resource, Rule rule);
+        /// <param name="expectedETag">The expected ETag for optimistic concurrency control. Null to skip check.</param>
+        /// <returns>True if update succeeded, false if ETag mismatch.</returns>
+        Task<bool> AddOrUpdateRule(Resource resource, Rule rule, string? expectedETag);
 
         /// <summary>
-        /// Deletes a rule from a policy identified by the resource and subject identifier.
+        /// Deletes a rule from a policy identified by the resource and subject (authority + identifier).
         /// </summary>
         /// <param name="resource">The resource used to identify the policy.</param>
-        /// <param name="subjectId">The identifier of the subject whose rule should be deleted.</param>
-        Task DeleteRule(Resource resource, string subjectId);
+        /// <param name="subject">The subject (authority + identifier) whose rule should be deleted.</param>
+        /// <param name="expectedETag">The expected ETag for optimistic concurrency control. Null to skip check.</param>
+        /// <returns>True if delete succeeded, false if ETag mismatch.</returns>
+        Task<bool> DeleteRule(Resource resource, Subject subject, string? expectedETag);
     }
 
 }

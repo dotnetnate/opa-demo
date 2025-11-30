@@ -47,6 +47,8 @@ public class MongoDbPolicyRepository : IPolicyRepository {
         // since the resource is the _id field, we can utilize the invalid operation exception that will be thrown and allow it to
         // check for duplicates instead of fetching and checking
         try {
+            // Generate initial ETag
+            policy.ETag = Guid.NewGuid().ToString();
             await _policyCollection.InsertOneAsync(policy);
         }
         catch (MongoWriteException ex) when (ex.WriteError.Category == ServerErrorCategory.DuplicateKey) {
@@ -54,46 +56,108 @@ public class MongoDbPolicyRepository : IPolicyRepository {
         }        
     }
 
-    public async Task UpdatePolicy(Resource resource, Policy policy) {
-        await _policyCollection.ReplaceOneAsync(
-            p => p.Resource.Identifier == resource.Identifier &&
-                 p.Resource.Authority == resource.Authority,
-            policy,
-            new ReplaceOptions { IsUpsert = false });
-    }
-
-    public async Task DeletePolicy(Resource resource) {
-        await _policyCollection.DeleteOneAsync(policy =>
-            policy.Resource.Identifier == resource.Identifier &&
-            policy.Resource.Authority == resource.Authority);
-    }
-
-    public async Task AddOrUpdateRule(Resource resource, Rule rule) {
-        var filter = Builders<Policy>.Filter.And(
-            Builders<Policy>.Filter.Eq(p => p.Resource.Identifier, resource.Identifier),
-            Builders<Policy>.Filter.Eq(p => p.Resource.Authority, resource.Authority)
+    public async Task<bool> UpdatePolicy(Resource resource, Policy policy, string? expectedETag) {
+        var filterBuilder = Builders<Policy>.Filter;
+        var filter = filterBuilder.And(
+            filterBuilder.Eq(p => p.Resource.Identifier, resource.Identifier),
+            filterBuilder.Eq(p => p.Resource.Authority, resource.Authority)
         );
 
+        // Add ETag check if provided
+        if (expectedETag != null) {
+            filter = filterBuilder.And(filter, filterBuilder.Eq(p => p.ETag, expectedETag));
+        }
+
+        // Generate new ETag
+        policy.ETag = Guid.NewGuid().ToString();
+
+        var result = await _policyCollection.ReplaceOneAsync(
+            filter,
+            policy,
+            new ReplaceOptions { IsUpsert = false });
+
+        return result.MatchedCount > 0;
+    }
+
+    public async Task<bool> DeletePolicy(Resource resource, string? expectedETag) {
+        var filterBuilder = Builders<Policy>.Filter;
+        var filter = filterBuilder.And(
+            filterBuilder.Eq(p => p.Resource.Identifier, resource.Identifier),
+            filterBuilder.Eq(p => p.Resource.Authority, resource.Authority)
+        );
+
+        // Add ETag check if provided
+        if (expectedETag != null) {
+            filter = filterBuilder.And(filter, filterBuilder.Eq(p => p.ETag, expectedETag));
+        }
+
+        var result = await _policyCollection.DeleteOneAsync(filter);
+
+        return result.DeletedCount > 0;
+    }
+
+    public async Task<bool> AddOrUpdateRule(Resource resource, Rule rule, string? expectedETag) {
+        var filterBuilder = Builders<Policy>.Filter;
+        var filter = filterBuilder.And(
+            filterBuilder.Eq(p => p.Resource.Identifier, resource.Identifier),
+            filterBuilder.Eq(p => p.Resource.Authority, resource.Authority)
+        );
+
+        // Add ETag check if provided
+        if (expectedETag != null) {
+            filter = filterBuilder.And(filter, filterBuilder.Eq(p => p.ETag, expectedETag));
+        }
+
+        // Use compound key (authority + identifier) to match rules
         var update = Builders<Policy>.Update
-            .PullFilter(p => p.Rules, r => r.Subject.Identifier == rule.Subject.Identifier)
-            .AddToSet(p => p.Rules, rule);
+            .PullFilter(p => p.Rules, r => 
+                r.Subject.Identifier == rule.Subject.Identifier && 
+                r.Subject.Authority == rule.Subject.Authority)
+            .AddToSet(p => p.Rules, rule)
+            .Set(p => p.ETag, Guid.NewGuid().ToString());
 
         var result = await _policyCollection.UpdateOneAsync(filter, update);
 
         if (result.MatchedCount == 0) {
-            throw new KeyNotFoundException($"Policy with resource '{resource.Identifier}' and type '{resource.Authority}' not found.");
+            // Check if policy exists at all
+            var existsFilter = filterBuilder.And(
+                filterBuilder.Eq(p => p.Resource.Identifier, resource.Identifier),
+                filterBuilder.Eq(p => p.Resource.Authority, resource.Authority)
+            );
+            var exists = await _policyCollection.Find(existsFilter).AnyAsync();
+            
+            if (!exists) {
+                throw new KeyNotFoundException($"Policy with resource '{resource.Identifier}' and type '{resource.Authority}' not found.");
+            }
+            
+            // Policy exists but ETag didn't match
+            return false;
         }
+
+        return true;
     }
 
-    public async Task DeleteRule(Resource resource, string subjectId) {
-        var filter = Builders<Policy>.Filter.And(
-            Builders<Policy>.Filter.Eq(p => p.Resource.Identifier, resource.Identifier),
-            Builders<Policy>.Filter.Eq(p => p.Resource.Authority, resource.Authority)
+    public async Task<bool> DeleteRule(Resource resource, Subject subject, string? expectedETag) {
+        var filterBuilder = Builders<Policy>.Filter;
+        var filter = filterBuilder.And(
+            filterBuilder.Eq(p => p.Resource.Identifier, resource.Identifier),
+            filterBuilder.Eq(p => p.Resource.Authority, resource.Authority)
         );
 
-        var update = Builders<Policy>.Update
-            .PullFilter(p => p.Rules, r => r.Subject.Identifier == subjectId);
+        // Add ETag check if provided
+        if (expectedETag != null) {
+            filter = filterBuilder.And(filter, filterBuilder.Eq(p => p.ETag, expectedETag));
+        }
 
-        await _policyCollection.UpdateOneAsync(filter, update);
+        // Use compound key (authority + identifier) to match rules
+        var update = Builders<Policy>.Update
+            .PullFilter(p => p.Rules, r => 
+                r.Subject.Identifier == subject.Identifier && 
+                r.Subject.Authority == subject.Authority)
+            .Set(p => p.ETag, Guid.NewGuid().ToString());
+
+        var result = await _policyCollection.UpdateOneAsync(filter, update);
+
+        return result.MatchedCount > 0;
     }
 }

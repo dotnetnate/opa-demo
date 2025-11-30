@@ -20,6 +20,11 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         /// Gets or sets the list of rules associated with the resource.
         /// </summary>
         public required ICollection<Rule> Rules { get; set; } = [];
+        /// <summary>
+        /// Gets or sets the ETag for optimistic concurrency control.
+        /// Updated on every modification to detect concurrent changes.
+        /// </summary>
+        public string? ETag { get; set; }
     }
 
 }

@@ -32,10 +32,12 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Mo
 
     public class UpdatePolicyRequest {
         public List<RuleModel> Rules { get; set; } = new(); // Updated list of rules for the policy
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class AddOrUpdateRuleRequest {
         public required RuleModel Rule { get; set; } // Rule details to add or update
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     #endregion
@@ -45,12 +47,15 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Mo
     public class DeleteRuleRequest {
         public required string Id { get; set; } // The resource ID identifying the policy
         public required string Authority { get; set; } // The resource type identifying the policy
-        public required string SubjectId { get; set; } // The subject ID of the rule to delete
+        public required string SubjectAuthority { get; set; } // The subject authority
+        public required string SubjectId { get; set; } // The subject identifier
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class PolicyModel {
         public required ResourceModel Resource { get; set; } // Resource associated with the policy
         public List<RuleModel> Rules { get; set; } = new(); // Rules within the policy
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class ResourceModel : ScopedIdentity {        
@@ -95,8 +100,8 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Mo
     public enum PermissionActions {
         [Description("deny")]
         Deny = 0,
-        [Description("grant")]
-        Grant = 1
+        [Description("permit")]
+        Permit = 1
     }
 
     public class PrivilegeModel {
@@ -121,8 +126,8 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Mo
         lt,
         [Description("eq")]
         eq,
-        [Description("ne")]
-        ne,
+        [Description("neq")]
+        neq,
         [Description("gte")]
         gte,
         [Description("lte")]

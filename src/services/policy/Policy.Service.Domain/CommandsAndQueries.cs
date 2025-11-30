@@ -17,20 +17,24 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
     public class UpdatePolicyCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy
         public List<Rule> Rules { get; set; } = new(); // The updated rules for the policy
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class DeletePolicyCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy to delete
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class AddOrUpdateRuleCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy
         public required Rule Rule { get; set; } // The rule to add or update
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     public class DeleteRuleCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy
-        public required string SubjectId { get; set; } // The subject ID of the rule to delete
+        public required Subject Subject { get; set; } // The subject (authority + identifier) of the rule to delete
+        public string? ETag { get; set; } // ETag for optimistic concurrency control
     }
 
     #endregion

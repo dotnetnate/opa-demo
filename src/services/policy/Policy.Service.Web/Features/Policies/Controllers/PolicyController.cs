@@ -44,6 +44,10 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
 
             if (result.IsSuccess()) {
                 var retVal = _mapper.Map<PolicyModel>(result.Result);
+                // Return ETag in response header
+                if (!string.IsNullOrEmpty(retVal.ETag)) {
+                    Response.Headers.Add("ETag", $"\"{retVal.ETag}\"");
+                }
                 return Ok(retVal);
             }
             else {
@@ -81,10 +85,19 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             
             command.Resource = new Resource { Identifier = resourceId, Authority = authority};
             
+            // Get ETag from If-Match header if not in body
+            if (string.IsNullOrEmpty(command.ETag) && Request.Headers.ContainsKey("If-Match")) {
+                command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
+            }
+            
             var result = await _policyService.UpdatePolicy(command);
 
             if (result.IsSuccess()) {
                 var retVal = _mapper.Map<PolicyModel>(result.Result);
+                // Return new ETag in response
+                if (!string.IsNullOrEmpty(retVal.ETag)) {
+                    Response.Headers.Add("ETag", $"\"{retVal.ETag}\"");
+                }
                 return Ok(retVal);
             }
             else {
@@ -97,6 +110,11 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             var command = new DeletePolicyCommand {
                 Resource = new Resource { Identifier = resourceId, Authority = authority }
             };
+
+            // Get ETag from If-Match header
+            if (Request.Headers.ContainsKey("If-Match")) {
+                command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
+            }
 
             var result = await _policyService.DeletePolicy(command);
 
@@ -113,6 +131,11 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             var command = _mapper.Map<AddOrUpdateRuleCommand>(model);
             command.Resource = new Resource { Identifier = resourceId, Authority = authority};
 
+            // Get ETag from If-Match header if not in body
+            if (string.IsNullOrEmpty(command.ETag) && Request.Headers.ContainsKey("If-Match")) {
+                command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
+            }
+
             var result = await _policyService.AddOrUpdateRule(command);
 
             if (result.IsSuccess()) {
@@ -123,12 +146,17 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Co
             }
         }
 
-        [HttpDelete("{authority}/{resourceId}/rules/{subjectId}")]
-        public async Task<IActionResult> DeleteRule(string authority, string resourceId, string subjectId) {
+        [HttpDelete("{authority}/{resourceId}/rules/{subjectAuthority}/{subjectId}")]
+        public async Task<IActionResult> DeleteRule(string authority, string resourceId, string subjectAuthority, string subjectId) {
             var command = new DeleteRuleCommand {
                 Resource = new Resource { Identifier = resourceId, Authority = authority },
-                SubjectId = subjectId
+                Subject = new Subject { Authority = subjectAuthority, Identifier = subjectId }
             };
+
+            // Get ETag from If-Match header
+            if (Request.Headers.ContainsKey("If-Match")) {
+                command.ETag = Request.Headers["If-Match"].ToString().Trim('"');
+            }
 
             var result = await _policyService.DeleteRule(command);
 

@@ -21,8 +21,8 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         lt,
         [Description("eq")]
         eq,
-        [Description("ne")]
-        ne,
+        [Description("neq")]
+        neq,
         [Description("gte")]
         gte,
         [Description("lte")]

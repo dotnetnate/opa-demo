@@ -102,7 +102,22 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
                 };
 
                 try {
-                    await _policyRepository.UpdatePolicy(command.Resource, policy);
+                    var success = await _policyRepository.UpdatePolicy(command.Resource, policy, command.ETag);
+                    
+                    if (!success) {
+                        // ETag mismatch - concurrent modification detected
+                        return CommandResult.VersionConflictResult<Policy>(
+                            validationResult: new InternalValidationResult {
+                                Errors =
+                                [
+                                new() {
+                                        PropertyName = "policy.etag",
+                                        ErrorMessage = "The policy has been modified by another request. Please refresh and try again."
+                                    }
+                                ]
+                            });
+                    }
+                    
                     return CommandResult.SuccessResult(policy);
                 }
                 catch (InvalidOperationException ex) {
@@ -128,7 +143,22 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         /// <returns>A command result indicating success or failure.</returns>
         public async Task<CommandResult> DeletePolicy(DeletePolicyCommand command) {
             return await ExecuteCommand(command, async (command) => {
-                await _policyRepository.DeletePolicy(command.Resource);
+                var success = await _policyRepository.DeletePolicy(command.Resource, command.ETag);
+                
+                if (!success) {
+                    // ETag mismatch - concurrent modification detected
+                    return CommandResult.VersionConflictResult(
+                        validationResult: new InternalValidationResult {
+                            Errors =
+                            [
+                            new() {
+                                    PropertyName = "policy.etag",
+                                    ErrorMessage = "The policy has been modified by another request. Please refresh and try again."
+                                }
+                            ]
+                        });
+                }
+                
                 return CommandResult.SuccessResult();
             });
         }
@@ -140,19 +170,64 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
         /// <returns>A command result indicating success or failure.</returns>
         public async Task<CommandResult> AddOrUpdateRule(AddOrUpdateRuleCommand command) {
             return await ExecuteCommand(command, async (command) => {
-                await _policyRepository.AddOrUpdateRule(command.Resource, command.Rule);
-                return CommandResult.SuccessResult();
+                try {
+                    var success = await _policyRepository.AddOrUpdateRule(command.Resource, command.Rule, command.ETag);
+                    
+                    if (!success) {
+                        // ETag mismatch - concurrent modification detected
+                        return CommandResult.VersionConflictResult(
+                            validationResult: new InternalValidationResult {
+                                Errors =
+                                [
+                                new() {
+                                        PropertyName = "policy.etag",
+                                        ErrorMessage = "The policy has been modified by another request. Please refresh and try again."
+                                    }
+                                ]
+                            });
+                    }
+                    
+                    return CommandResult.SuccessResult();
+                }
+                catch (KeyNotFoundException ex) {
+                    Logger.LogError(ex, "Policy not found for resource: {Resource}", command.Resource);
+                    return CommandResult.NotFoundResult(
+                        validationResult: new InternalValidationResult {
+                            Errors =
+                            [
+                            new() {
+                                    PropertyName = "policy.resource",
+                                    ErrorMessage = "The specified policy does not exist."
+                                }
+                            ]
+                        });
+                }
             });
         }
 
         /// <summary>
         /// Deletes a specific rule from a policy.
         /// </summary>
-        /// <param name="command">The command containing the resource and subject ID of the rule to delete.</param>
+        /// <param name="command">The command containing the resource and subject (authority + identifier) of the rule to delete.</param>
         /// <returns>A command result indicating success or failure.</returns>
         public async Task<CommandResult> DeleteRule(DeleteRuleCommand command) {
             return await ExecuteCommand(command, async (command) => {
-                await _policyRepository.DeleteRule(command.Resource, command.SubjectId);
+                var success = await _policyRepository.DeleteRule(command.Resource, command.Subject, command.ETag);
+                
+                if (!success) {
+                    // ETag mismatch - concurrent modification detected
+                    return CommandResult.VersionConflictResult(
+                        validationResult: new InternalValidationResult {
+                            Errors =
+                            [
+                            new() {
+                                    PropertyName = "policy.etag",
+                                    ErrorMessage = "The policy has been modified by another request. Please refresh and try again."
+                                }
+                            ]
+                        });
+                }
+                
                 return CommandResult.SuccessResult();
             });
         }

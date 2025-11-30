@@ -9,7 +9,7 @@ namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
     public enum PermissionActions {
         [Description("deny")]
         Deny = 0,
-        [Description("grant")]
-        Grant = 1
+        [Description("permit")]
+        Permit = 1
     }
 }

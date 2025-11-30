@@ -1,0 +1,56 @@
+{
+    "policyId": "56236f22-a36b-4c96-81b4-49948a4cea85-policy",
+    "policyDescription": "An example policy for an object",
+    "resource": {
+        "resourceId": "56236f22-a36b-4c96-81b4-49948a4cea85",
+        "resourceType": "account",
+        "attributes": []
+    },
+    "rules": [
+        {
+            "subject": {
+                "identifier": "9d474bc1-d4ea-4d5c-b7bb-11324080db56",
+                "type": "user",
+                "authority": "https://auth0.com/"
+            },
+            "privileges": {
+                "PERMITTED_PERMISSION_0": {
+                    "effect": "permit",
+                    "conditions": [
+                        {
+                            "attribute": "amount",
+                            "operator": "eq",
+                            "value": 500
+                        }
+                    ]
+                },
+                "DENIED_PERMISSION_0": {
+                    "effect": "deny"
+                },
+                "PERMITTED_PERMISSION_1": {
+                    "effect": "permit",
+                    "conditions": [
+                        {
+                            "attribute": "amount",
+                            "operator": "eq",
+                            "value": 500
+                        }
+                    ]
+                },
+                "DENIED_PERMISSION_1": {
+                    "effect": "deny"
+                },
+                "PERMITTED_PERMISSION_2": {
+                    "effect": "permit",
+                    "conditions": [
+                        {
+                            "attribute": "amount",
+                            "operator": "eq",
+                            "value": 500
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -18,6 +18,15 @@ namespace CitizensFinancialGroup.Threvw.Policies.Domain {
             RuleFor(r => r.Privileges).NotNull().WithMessage("Privileges are required.");
             RuleFor(r => r.Subject).SetValidator(new SubjectValidator());
             RuleForEach(r => r.Privileges).SetValidator(new PrivilegeValidator());
+            
+            // Enforce unique permission names within a rule
+            RuleFor(r => r.Privileges)
+                .Must(privileges => {
+                    if (privileges == null) return true;
+                    var permissionNames = privileges.Select(p => p.PermissionName).ToList();
+                    return permissionNames.Distinct().Count() == permissionNames.Count;
+                })
+                .WithMessage("A rule cannot contain duplicate permission names.");
         }
     }
 }
