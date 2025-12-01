@@ -17,6 +17,6 @@ namespace CitizensFinancialGroup.Elements.Security.Identity {
         /// </summary>
         /// <param name="context">The context from which to acquire identities.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains a tuple with the originating and impersonated identities.</returns>
-        Task<(TIdentity? originatingIdentity, TIdentity? impersonatedIdentity)> AcquireIdentitiesFromRequest(TContext context);
+        Task<IdentityContext<TIdentity>> AcquireIdentitiesFromRequest(TContext context);
     }
 }

@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Elements.ApplicationModel.Abstractions\Elements.ApplicationModel.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Elements.Core\Elements.Core.csproj" />
-    <ProjectReference Include="..\..\Elements.Validation.Abstractions\Elements.Validation.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Elements.Validation.FluentValidation\Elements.Validation.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\elements\Elements.ApplicationModel.Abstractions\Elements.ApplicationModel.Abstractions.csproj" />
+    <ProjectReference Include="..\..\elements\Elements.Core\Elements.Core.csproj" />
+    <ProjectReference Include="..\..\elements\Elements.Validation.Abstractions\Elements.Validation.Abstractions.csproj" />
+    <ProjectReference Include="..\..\elements\Elements.Validation.FluentValidation\Elements.Validation.FluentValidation.csproj" />
   </ItemGroup>
 
 </Project>

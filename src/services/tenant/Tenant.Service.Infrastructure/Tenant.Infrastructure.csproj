@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Elements.Data.MongoDb\Elements.Data.MongoDb.csproj" />
+    <ProjectReference Include="..\..\elements\Elements.Data.MongoDb\Elements.Data.MongoDb.csproj" />
     <ProjectReference Include="..\Tenant.Service.Domain\Tenant.Domain.csproj" />
   </ItemGroup>
 
