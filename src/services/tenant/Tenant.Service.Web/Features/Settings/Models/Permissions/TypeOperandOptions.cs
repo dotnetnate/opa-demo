@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
+namespace NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
 {
     internal class TypeOperandOptions
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     public class ResourceValidator : AbstractValidator<Resource> {
         public ResourceValidator() {            
             RuleFor(r=>r.Authority).NotEmpty().WithMessage("Authority for the resource's identity is required");

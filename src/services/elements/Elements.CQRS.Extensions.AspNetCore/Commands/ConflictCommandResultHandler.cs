@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
     public class ConflictCommandResultHandler : ConflictCommandResultHandler<IActionResult> {
 
         public ConflictCommandResultHandler() {

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Infrastructure;
+using NOCO.Threvw.Tenants.Domain;
+using NOCO.Threvw.Tenants.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Microsoft.Extensions.Logging;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.TBD;
+using NOCO.Threvw.Tenants.Service.Http.TBD;
 using Microsoft.Extensions.Options;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -13,15 +13,15 @@ using System.Text.Json;
 using MongoDB.Bson;
 using System.Security.Claims;
 using Microsoft.OpenApi.Models;
-using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
-using CitizensFinancialGroup.Elements.Security.Identity;
-using CitizensFinancialGroup.Elements.Validation;
-using CitizensFinancialGroup.Elements.Validation.FluentValidation;
+using NOCO.Elements.Data.MongoDb.Configuration;
+using NOCO.Elements.Security.Identity;
+using NOCO.Elements.Validation;
+using NOCO.Elements.Validation.FluentValidation;
 
 
 
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http {
+namespace NOCO.Threvw.Tenants.Service.Http {
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;            

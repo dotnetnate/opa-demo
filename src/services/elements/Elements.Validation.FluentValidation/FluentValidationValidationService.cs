@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CitizensFinancialGroup.Elements.Validation.FluentValidation {
+namespace NOCO.Elements.Validation.FluentValidation {
     public class FluentValidationValidationService : ValidationServiceBase {
 
         private readonly Dictionary<Type, object> _validators = new Dictionary<Type, object>();

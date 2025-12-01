@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Common.Data.MongoDb {
+namespace NOCO.Threvw.Common.Data.MongoDb {
     public class MongoDbConnectionOptions {
         public string ConnectionString { get; set; }
         public string Server { get; set; }

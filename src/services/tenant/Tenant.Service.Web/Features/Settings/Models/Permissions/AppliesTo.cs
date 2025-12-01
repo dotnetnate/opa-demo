@@ -1,4 +1,4 @@
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
+namespace NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
 {
 
     public class AppliesTo {

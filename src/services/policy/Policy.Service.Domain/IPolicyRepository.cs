@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
 
     /// <summary>
     /// Repository for managing policies and related constructs such as policy definitions, etc.

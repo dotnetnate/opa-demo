@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.Validation {
+namespace NOCO.Elements.Validation {
 
 
     public class InternalValidationError {

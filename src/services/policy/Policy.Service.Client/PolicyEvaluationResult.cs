@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     public class PolicyEvaluationResult {
         public Decisions Decision { get; set; }
         public ICollection<Advice> Advices { get; set; } = new List<Advice>();

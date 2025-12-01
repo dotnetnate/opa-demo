@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Commands {
+namespace NOCO.Elements.ApplicationModel.CQRS.Commands {
     public class CommandResultHandlerService<TResult> : ICommandResultHandlerService<TResult> {
 
         private readonly IEnumerable<ICommandResultHandler<TResult>> m_handlers;

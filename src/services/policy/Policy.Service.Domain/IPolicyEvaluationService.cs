@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Service for evaluating policy decisions (Policy Decision Point - PDP).
     /// </summary>

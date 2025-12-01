@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Commands 
+namespace NOCO.Elements.ApplicationModel.CQRS.Commands 
     {
     public abstract class CommandBase<T> : CommandBase
     {

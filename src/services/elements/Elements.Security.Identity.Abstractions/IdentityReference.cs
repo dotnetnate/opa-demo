@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.Security.Identity {
+namespace NOCO.Elements.Security.Identity {
     /// <summary>
     /// Represents a reference to an identity with an identifier, display name, and authority.
     /// </summary>

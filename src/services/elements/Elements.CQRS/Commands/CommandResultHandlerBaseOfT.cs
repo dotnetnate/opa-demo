@@ -1,10 +1,10 @@
 ﻿
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using NOCO.Threvw.Common.Validation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
 
     public abstract class CommandResultHandlerBase<T,TResult> : ICommandResultHandler<TResult>{
         public TResult HandleCommandResult(CommandResult result) {

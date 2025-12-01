@@ -1,5 +1,5 @@
 ﻿using Castle.Core.Logging;
-using CitizensFinancialGroup.Threvw.Policy.Service.Client;
+using NOCO.Threvw.Policy.Service.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Moq;

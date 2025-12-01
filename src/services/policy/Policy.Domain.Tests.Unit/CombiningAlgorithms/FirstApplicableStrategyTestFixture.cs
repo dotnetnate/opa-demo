@@ -1,5 +1,5 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain.CombiningAlgorithms;
 using Moq;
 
 namespace Policy.Domain.Tests.Unit.CombiningAlgorithms {
@@ -118,10 +118,10 @@ namespace Policy.Domain.Tests.Unit.CombiningAlgorithms {
                 EffectRules = new List<EffectRule> {
                     new EffectRule {
                         Effect = PermissionActions.Permit,
-                        ValidityPeriod = new CitizensFinancialGroup.Elements.Range<DateTimeOffset>(
+                        ValidityPeriod = new NOCO.Elements.Range<DateTimeOffset>(
                             DateTimeOffset.Now.AddDays(-10),
                             DateTimeOffset.Now.AddDays(-1)) { // Expired
-                            Type = CitizensFinancialGroup.Elements.Range<DateTimeOffset>.RangeType.Inclusive
+                            Type = NOCO.Elements.Range<DateTimeOffset>.RangeType.Inclusive
                         },
                         Conditions = new List<Condition>()
                     },

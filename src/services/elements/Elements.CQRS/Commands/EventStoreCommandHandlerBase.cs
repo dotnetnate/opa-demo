@@ -3,7 +3,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+//namespace NOCO.Elements.CQRS.Commands {
 //    public abstract class EventStoreCommandHandler<TCommand, TResult, TEvent> : CommandHandler<TCommand, TResult>
 //        where TCommand : CommandBase
 //        where TResult : CommandResult, new() {

@@ -1,4 +1,4 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 using FluentValidation.TestHelper;
 
 namespace Policy.Domain.Tests.Unit {

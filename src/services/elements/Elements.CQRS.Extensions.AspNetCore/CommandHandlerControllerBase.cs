@@ -1,5 +1,5 @@
-﻿using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Elements.CQRS.Queries;
+﻿using NOCO.Elements.CQRS.Commands;
+using NOCO.Elements.CQRS.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace CitizensFinancialGroup.Elements.CQRS.Extensions.AspNetCore {
+namespace NOCO.Elements.CQRS.Extensions.AspNetCore {
     public class CommandHandlerControllerBase<TIdentity> : ControllerBase {
 
         private readonly string _sourceName;

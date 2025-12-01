@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
+namespace NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions
 {
 
     public class PermissionOptionsGroup : OptionsGroup{

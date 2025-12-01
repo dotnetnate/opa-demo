@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+namespace NOCO.Elements.ApplicationModel.Commands {
     public class CommandResult<TResult> : CommandResult {      
         /// <summary>
         /// The result data from the execution of the command.

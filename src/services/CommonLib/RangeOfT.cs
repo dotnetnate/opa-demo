@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Common {
+namespace NOCO.Threvw.Common {
     public class Range<T>
         where T : IComparable<T> {
 

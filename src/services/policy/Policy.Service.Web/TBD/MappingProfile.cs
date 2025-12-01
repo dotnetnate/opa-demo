@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using AutoMapper.Features;
-using CitizensFinancialGroup.Elements.Validation;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
+using NOCO.Elements.Validation;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Tenants.Domain;
 
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD {
+namespace NOCO.Threvw.Policy.Service.Http.TBD {
 
 
     public class MappingProfile : Profile {
         public MappingProfile() {
             // Domain-to-Model and Model-to-Domain Mappings
-            CreateMap<global::CitizensFinancialGroup.Threvw.Policies.Domain.Policy, Features.Policies.Models.PolicyModel>().ReverseMap();
+            CreateMap<global::NOCO.Threvw.Policies.Domain.Policy, Features.Policies.Models.PolicyModel>().ReverseMap();
             CreateMap<Resource, Features.Policies.Models.ResourceModel>().ReverseMap();
             CreateMap<Rule, Features.Policies.Models.RuleModel>().ReverseMap();
             CreateMap<Subject, Features.Policies.Models.SubjectModel>().ReverseMap();

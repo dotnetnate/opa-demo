@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>CitizensFinancialGroup.Entitlements.Tenants.Service.Http</AssemblyName>
-    <RootNamespace>CitizensFinancialGroup.Threvw.Policy.Service.Http</RootNamespace>
+    <AssemblyName>NOCO.Entitlements.Tenants.Service.Http</AssemblyName>
+    <RootNamespace>NOCO.Threvw.Policy.Service.Http</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

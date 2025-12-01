@@ -1,11 +1,11 @@
 using AutoMapper;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Controllers;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Controllers;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using DomainPolicyDecision = CitizensFinancialGroup.Threvw.Policies.Domain.PolicyDecision;
+using DomainPolicyDecision = NOCO.Threvw.Policies.Domain.PolicyDecision;
 
 namespace Policy.Service.Http.Tests.Unit.Features.Policies.Controllers {
     [TestClass]
@@ -153,7 +153,7 @@ namespace Policy.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var okResult = result as OkObjectResult;
             var response = okResult!.Value as EvaluatePolicyResponse;
             Assert.IsNotNull(response);
-            Assert.AreEqual(CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models.PolicyDecision.Permit, response.Decision);
+            Assert.AreEqual(NOCO.Threvw.Policy.Service.Http.Features.Policies.Models.PolicyDecision.Permit, response.Decision);
             Assert.AreEqual(1, response.Obligations.Count);
             Assert.AreEqual("logging", response.Obligations[0].Type);
             Assert.AreEqual(1, response.Advice.Count);
@@ -204,7 +204,7 @@ namespace Policy.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var okResult = result as OkObjectResult;
             var response = okResult!.Value as EvaluatePolicyResponse;
             Assert.IsNotNull(response);
-            Assert.AreEqual(CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models.PolicyDecision.Deny, response.Decision);
+            Assert.AreEqual(NOCO.Threvw.Policy.Service.Http.Features.Policies.Models.PolicyDecision.Deny, response.Decision);
         }
 
         [TestMethod]

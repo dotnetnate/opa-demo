@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentValidation.TestHelper;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
+namespace NOCO.Threvw.Policies.Domain.Tests {
     [TestClass]
     public class RuleValidatorTestFixture {
         private RuleValidator _validator;

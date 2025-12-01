@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands{
+namespace NOCO.Elements.ApplicationModel.Commands{
     /// <summary>
     /// Represents the categories of command failures that can occur in the system.
     /// </summary>

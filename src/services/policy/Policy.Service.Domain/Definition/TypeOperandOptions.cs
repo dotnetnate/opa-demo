@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Definition {
+namespace NOCO.Threvw.Policies.Definition {
     public class TypeOperandOptions {
         private static Dictionary<string, string[]> _typeOperandOptions = new Dictionary<string, string[]> {
             { "string", new string[]{ "gt", "lt", "eq", "neq", "gte", "lte" } },

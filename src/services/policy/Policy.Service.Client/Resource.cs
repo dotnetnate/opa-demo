@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     /// <summary>
     /// Represents a resource with an identifier, scope, type, and optional extended properties.
     /// </summary>

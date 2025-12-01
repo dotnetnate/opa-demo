@@ -1,4 +1,4 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 using Microsoft.Extensions.Logging;
 using Moq;
 

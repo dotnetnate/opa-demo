@@ -1,5 +1,5 @@
-﻿using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
+﻿using NOCO.Elements.Data.MongoDb.Configuration;
+using NOCO.Threvw.Tenants.Domain;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Infrastructure {
+namespace NOCO.Threvw.Tenants.Infrastructure {
 
     public class MongoDbTenantRepository : ITenantRepository {
         private readonly IMongoCollection<Tenant> _collection;        

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     public enum InputSources {
         [Description("transactionContext")]
         TransactionContext = 0,

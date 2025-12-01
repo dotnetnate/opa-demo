@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Definition {
+namespace NOCO.Threvw.Policies.Definition {
 
     public class PermissionTarget {
         public required string Scope { get; set; }

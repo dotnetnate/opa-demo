@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Represents a subject within the policy domain.
     /// </summary>

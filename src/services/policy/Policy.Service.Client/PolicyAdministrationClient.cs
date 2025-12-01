@@ -18,7 +18,7 @@ using Microsoft.Extensions.Options;
 #endregion
 
 #region PolicyClient
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
 
 
     public class PolicyAdministrationClientOptions {

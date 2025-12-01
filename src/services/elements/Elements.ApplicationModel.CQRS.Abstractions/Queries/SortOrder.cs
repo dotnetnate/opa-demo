@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Queries {
+namespace NOCO.Elements.ApplicationModel.CQRS.Queries {
     public enum SortOrder
     {
         Ascending = 1,

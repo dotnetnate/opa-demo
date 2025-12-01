@@ -1,6 +1,6 @@
 using System;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Compares values for condition evaluation.
     /// Handles numeric, string, and DateTime comparisons.

@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>CitizensFinancialGroup.Threvw.Tenants.Infrastructure</RootNamespace>
+    <RootNamespace>NOCO.Threvw.Tenants.Infrastructure</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

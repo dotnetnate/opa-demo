@@ -1,12 +1,12 @@
-﻿using CitizensFinancialGroup.Threvw.Tenants.Domain;
+﻿using NOCO.Threvw.Tenants.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CitizensFinancialGroup.Elements;
+using NOCO.Elements;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Represents a privilege with a permission name and multiple effect rules.
     /// Based on XACML policy model with support for conditional effects, obligations, and advice.

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using System.Diagnostics.CodeAnalysis;
 
 
-namespace CitizensFinancialGroup.Threvw.Policies.Service.Http {
+namespace NOCO.Threvw.Policies.Service.Http {
 
     [ExcludeFromCodeCoverage]
     public class Program {

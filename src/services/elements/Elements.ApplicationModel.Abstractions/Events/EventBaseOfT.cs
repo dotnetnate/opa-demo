@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Events
+namespace NOCO.Elements.ApplicationModel.Events
 {
     public abstract class EventBase<T> : EventBase
     {

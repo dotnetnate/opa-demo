@@ -1,7 +1,7 @@
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Threvw.Policies.Domain;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Application {
+namespace NOCO.Threvw.Policies.Application {
     public class DeleteRuleCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy
         public required Subject Subject { get; set; } // The subject (authority + identifier) of the rule to delete

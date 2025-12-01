@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     public class PolicyBuilder {
         private readonly Policy _policy;
         private readonly PolicyValidator _policyValidator = new();

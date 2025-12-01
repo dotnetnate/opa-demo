@@ -1,7 +1,7 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 using Microsoft.Extensions.Logging;
 using Moq;
-using DomainPolicy = CitizensFinancialGroup.Threvw.Policies.Domain.Policy;
+using DomainPolicy = NOCO.Threvw.Policies.Domain.Policy;
 
 namespace Policy.Domain.Tests.Unit {
     [TestClass]

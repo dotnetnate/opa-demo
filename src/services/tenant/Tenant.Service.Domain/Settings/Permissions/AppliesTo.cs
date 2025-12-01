@@ -1,4 +1,4 @@
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain
+namespace NOCO.Threvw.Tenants.Domain
 {
 
     public class AppliesTo

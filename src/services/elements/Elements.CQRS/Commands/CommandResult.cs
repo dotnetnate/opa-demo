@@ -1,11 +1,11 @@
 ﻿
-using CitizensFinancialGroup.Threvw.Common.Validation;
+using NOCO.Threvw.Common.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
     /// <summary>
     /// The result of executing a command.
     /// </summary>

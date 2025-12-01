@@ -1,11 +1,11 @@
-﻿using CitizensFinancialGroup.Elements;
+﻿using NOCO.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Metrics.Models{
+namespace NOCO.Threvw.Tenants.Service.Http.Features.Metrics.Models{
     public class Metric {
         public required string Name { get; set; }
         public Range<DateTimeOffset>? ReportingRange { get; set; }

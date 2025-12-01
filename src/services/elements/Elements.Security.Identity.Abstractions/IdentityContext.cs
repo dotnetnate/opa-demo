@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.Security.Identity {
+namespace NOCO.Elements.Security.Identity {
     public class IdentityContext<TIdentity>{
         public TIdentity? ServiceIdentity { get;set;}
         public TIdentity? OriginatingUser { get;set;}

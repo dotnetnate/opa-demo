@@ -5,10 +5,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Domain.Settings;
+using NOCO.Threvw.Tenants.Domain;
+using NOCO.Threvw.Tenants.Domain.Settings;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Infrastructure {
+namespace NOCO.Threvw.Tenants.Infrastructure {
     public class OptionsGroupEntityJsonConverter : JsonConverter<OptionsGroup> {
         public override OptionsGroup Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
             // Parse the JSON object

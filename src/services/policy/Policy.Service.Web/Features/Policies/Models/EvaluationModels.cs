@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models {
+namespace NOCO.Threvw.Policy.Service.Http.Features.Policies.Models {
     
     #region Request Models
 

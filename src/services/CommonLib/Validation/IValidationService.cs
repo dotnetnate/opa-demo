@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Common.Validation {
+namespace NOCO.Threvw.Common.Validation {
 
 
     public class InternalValidationError {

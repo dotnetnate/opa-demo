@@ -1,11 +1,11 @@
-﻿using CitizensFinancialGroup.Threvw.Identity;
+﻿using NOCO.Threvw.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Events
+namespace NOCO.Elements.CQRS.Events
 {
     public class EventContext
     {

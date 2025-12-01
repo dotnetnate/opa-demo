@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms {
+namespace NOCO.Threvw.Policies.Domain.CombiningAlgorithms {
     /// <summary>
     /// Resolves the appropriate combining algorithm strategy for a given algorithm enum.
     /// </summary>

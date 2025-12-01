@@ -1,11 +1,11 @@
-﻿using CitizensFinancialGroup.Elements.Security.Identity;
+﻿using NOCO.Elements.Security.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Events
+namespace NOCO.Elements.ApplicationModel.Events
 {
     public class EventContext
     {

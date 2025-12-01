@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Definition {
+namespace NOCO.Threvw.Policies.Definition {
     public class PermissionDefinitionValidator : AbstractValidator<PermissionDefinition> {
         public PermissionDefinitionValidator() {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Permission name is required.");

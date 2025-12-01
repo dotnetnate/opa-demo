@@ -1,11 +1,11 @@
-﻿using CitizensFinancialGroup.Elements.Validation;
+﻿using NOCO.Elements.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Queries {
+namespace NOCO.Elements.ApplicationModel.Queries {
     
     public enum NullResultAdvices {
         TreatAsSuccess = 0,

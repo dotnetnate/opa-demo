@@ -1,10 +1,10 @@
 ﻿
-using CitizensFinancialGroup.Elements.Validation;
+using NOCO.Elements.Validation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+namespace NOCO.Elements.ApplicationModel.Commands {
 
     public abstract class CommandResultHandlerBase<T,TResult> : ICommandResultHandler<TResult>{
         public TResult HandleCommandResult(CommandResult result) {

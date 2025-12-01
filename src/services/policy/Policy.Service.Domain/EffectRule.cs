@@ -1,8 +1,8 @@
-using CitizensFinancialGroup.Elements;
+using NOCO.Elements;
 using System;
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Represents a rule that specifies an effect (Permit/Deny) along with conditions,
     /// obligations, and advice. Multiple effect rules can exist within a privilege.

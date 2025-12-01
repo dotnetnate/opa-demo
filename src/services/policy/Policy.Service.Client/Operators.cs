@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
 
     /// <summary>
     /// Represents the operations that can be performed during evaluation of a condition on a rule.    

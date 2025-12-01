@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
     public abstract class CommandHandlerBase {
 
         private readonly string _sourceName;

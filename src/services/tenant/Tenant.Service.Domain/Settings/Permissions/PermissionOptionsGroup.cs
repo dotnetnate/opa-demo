@@ -1,11 +1,11 @@
-using CitizensFinancialGroup.Threvw.Tenants.Domain.Settings;
+using NOCO.Threvw.Tenants.Domain.Settings;
 using FluentValidation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
+namespace NOCO.Threvw.Tenants.Domain {
 
     public class PermissionOptionsGroup : OptionsGroup {
         

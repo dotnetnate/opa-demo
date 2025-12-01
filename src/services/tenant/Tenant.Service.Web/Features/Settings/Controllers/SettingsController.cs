@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants.Models;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.TBD;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
+using NOCO.Threvw.Tenants.Domain;
+using NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models;
+using NOCO.Threvw.Tenants.Service.Http.Features.Tenants;
+using NOCO.Threvw.Tenants.Service.Http.Features.Tenants.Models;
+using NOCO.Threvw.Tenants.Service.Http.TBD;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Controllers {
+namespace NOCO.Threvw.Tenants.Service.Http.Features.Settings.Controllers {
 
     [ApiController]
     [Route("api/tenant/{tenantId}/settings")]

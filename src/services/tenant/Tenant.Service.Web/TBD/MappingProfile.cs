@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.Validation;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Tenants.Models;
+using NOCO.Elements.Validation;
+using NOCO.Threvw.Tenants.Domain;
+using NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models;
+using NOCO.Threvw.Tenants.Service.Http.Features.Tenants.Models;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.TBD {
+namespace NOCO.Threvw.Tenants.Service.Http.TBD {
 
 
     public class MappingProfile : Profile {

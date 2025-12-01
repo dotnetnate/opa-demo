@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>CitizensFinancialGroup.Elements.CQRS.Extensions.AspNetCore</RootNamespace>
+    <RootNamespace>NOCO.Elements.CQRS.Extensions.AspNetCore</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

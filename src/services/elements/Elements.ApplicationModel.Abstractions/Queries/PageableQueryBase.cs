@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Queries
+namespace NOCO.Elements.ApplicationModel.Queries
 {
     public abstract class PageableQueryBase : QueryBase
     {        

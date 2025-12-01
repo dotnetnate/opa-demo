@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands{
+namespace NOCO.Elements.CQRS.Commands{
     public enum CommandFailureCategory {
         None = 0,
         ResourceNotFound = 1,

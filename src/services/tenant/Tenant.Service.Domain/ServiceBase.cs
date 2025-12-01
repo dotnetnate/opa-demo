@@ -1,9 +1,9 @@
-﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
+﻿using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
 
-using CitizensFinancialGroup.Elements;
-using CitizensFinancialGroup.Elements.Security.Identity;
-using CitizensFinancialGroup.Elements.Validation;
+using NOCO.Elements;
+using NOCO.Elements.Security.Identity;
+using NOCO.Elements.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;
@@ -14,7 +14,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
+namespace NOCO.Threvw.Tenants.Domain {
     public abstract class ServiceBase<TIdentity, TIdentityContext> {
 
         private readonly string _sourceName;

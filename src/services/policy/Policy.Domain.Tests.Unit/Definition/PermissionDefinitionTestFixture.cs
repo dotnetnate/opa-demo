@@ -1,4 +1,4 @@
-using CitizensFinancialGroup.Threvw.Policies.Definition;
+using NOCO.Threvw.Policies.Definition;
 
 namespace Policy.Domain.Tests.Unit;
 

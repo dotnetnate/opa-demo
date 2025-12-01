@@ -1,10 +1,10 @@
 using AutoMapper;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Controllers {
+namespace NOCO.Threvw.Policy.Service.Http.Features.Policies.Controllers {
     /// <summary>
     /// Policy Decision Point (PDP) controller.
     /// Evaluates policy decisions as an alternative to OPA.

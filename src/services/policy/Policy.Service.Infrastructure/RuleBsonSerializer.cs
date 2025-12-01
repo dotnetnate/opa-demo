@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 using MongoDB.Bson.IO;
-using CitizensFinancialGroup.Elements;
+using NOCO.Elements;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Infrastructure {
+namespace NOCO.Threvw.Policies.Infrastructure {
     public class RuleBsonSerializer : IBsonSerializer<Rule> {
         public Type ValueType => typeof(Rule);
 

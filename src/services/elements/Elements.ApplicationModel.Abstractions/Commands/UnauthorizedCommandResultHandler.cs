@@ -1,4 +1,4 @@
-﻿namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+﻿namespace NOCO.Elements.ApplicationModel.Commands {
     public class UnauthorizedCommandResultHandler<TResult> : CommandResultHandlerBase<TResult> {
 
         protected override bool ShouldHandleResult(CommandResult result) {

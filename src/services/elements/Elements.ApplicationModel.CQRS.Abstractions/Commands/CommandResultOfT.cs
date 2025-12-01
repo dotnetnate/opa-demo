@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Commands {
+namespace NOCO.Elements.ApplicationModel.CQRS.Commands {
     public class CommandResult<TResult> : CommandResult {      
         /// <summary>
         /// The result data from the execution of the command.

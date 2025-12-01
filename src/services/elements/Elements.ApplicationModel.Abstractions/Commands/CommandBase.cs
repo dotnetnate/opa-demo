@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands
+namespace NOCO.Elements.ApplicationModel.Commands
 {
     public abstract class CommandBase
     {

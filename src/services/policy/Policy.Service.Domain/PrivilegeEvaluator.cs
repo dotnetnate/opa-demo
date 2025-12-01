@@ -1,7 +1,7 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms;
+using NOCO.Threvw.Policies.Domain.CombiningAlgorithms;
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Evaluates privileges by delegating to combining algorithm strategies.
     /// </summary>

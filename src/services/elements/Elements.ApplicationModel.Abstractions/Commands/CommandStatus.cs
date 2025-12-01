@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+namespace NOCO.Elements.ApplicationModel.Commands {
     public enum CommandStatus {
         Succeeded = 0,
         Received = 100,

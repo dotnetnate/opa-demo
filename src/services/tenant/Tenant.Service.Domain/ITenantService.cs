@@ -1,9 +1,9 @@
 ﻿
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
-using CitizensFinancialGroup.Elements;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
+using NOCO.Elements;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
+namespace NOCO.Threvw.Tenants.Domain {
     public interface ITenantService {
         Task<CommandResult<Tenant>> CreateTenant(CreateTenantCommand command);
         Task<CommandResult> DeleteTenant(DeleteTenantCommand command);

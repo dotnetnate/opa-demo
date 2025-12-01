@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Commands {
+namespace NOCO.Elements.ApplicationModel.CQRS.Commands {
     /// <summary>
     /// Abstract base class for handling commands.
     /// </summary>

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     /// <summary>
     /// Represents a rule that specifies an effect (Permit/Deny) along with conditions,
     /// obligations, and advice. Multiple effect rules can exist within a privilege.

@@ -5,11 +5,11 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Shared.Models;
-using CitizensFinancialGroup.Elements;
+using NOCO.Threvw.Policy.Service.Http.Features.Shared.Models;
+using NOCO.Elements;
 
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models {
+namespace NOCO.Threvw.Policy.Service.Http.Features.Policies.Models {
     #region Requests
 
     public class FindPoliciesRequest {

@@ -1,13 +1,13 @@
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
-using CitizensFinancialGroup.Elements.Security.Identity;
-using CitizensFinancialGroup.Elements.Validation;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
+using NOCO.Elements.Security.Identity;
+using NOCO.Elements.Validation;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
 
     /// <summary>
     /// Service class for managing policies.

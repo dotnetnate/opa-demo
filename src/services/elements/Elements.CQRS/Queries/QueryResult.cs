@@ -1,12 +1,12 @@
-﻿using CitizensFinancialGroup.Elements.CQRS.Commands;
-using CitizensFinancialGroup.Threvw.Common.Validation;
+﻿using NOCO.Elements.CQRS.Commands;
+using NOCO.Threvw.Common.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Queries {
+namespace NOCO.Elements.CQRS.Queries {
     
     public enum NullResultAdvices {
         TreatAsSuccess = 0,

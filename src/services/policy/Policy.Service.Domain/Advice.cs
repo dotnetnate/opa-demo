@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Represents advisory information that MAY be acted upon by the policy enforcement point.
     /// Based on XACML Advice. Unlike obligations, advice can be ignored if the PEP cannot handle it.

@@ -1,5 +1,5 @@
-﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
+﻿using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Extensions.AspNetCore {
+namespace NOCO.Elements.ApplicationModel.Extensions.AspNetCore {
     public class CommandHandlerControllerBase<TIdentity> : ControllerBase {
 
         private readonly string _sourceName;

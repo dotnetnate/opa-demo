@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Extensions.AspNetCore {
+namespace NOCO.Elements.CQRS.Extensions.AspNetCore {
     public interface IIdentityService<TIdentity> {
         Task AcquireIdentitiesFromRequest(HttpRequest request, out TIdentity originatingIdentity, out TIdentity impersonatedIdentity);
     }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Common {
+namespace NOCO.Threvw.Common {
 
     public enum OperationOutcomes {
         Success = 0,

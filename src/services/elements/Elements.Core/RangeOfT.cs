@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements {
+namespace NOCO.Elements {
 
     /// <summary>
     /// Represents a range of values with a specified start and end.

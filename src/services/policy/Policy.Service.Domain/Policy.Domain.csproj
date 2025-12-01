@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>CitizensFinancialGroup.Threvw.Policies.Domain</RootNamespace>
+    <RootNamespace>NOCO.Threvw.Policies.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

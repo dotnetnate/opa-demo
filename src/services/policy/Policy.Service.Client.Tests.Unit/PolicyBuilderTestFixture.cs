@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client.Tests {
+namespace NOCO.Threvw.Policy.Service.Client.Tests {
     [TestClass]
     public class PolicyBuilderTests {
         [TestMethod]

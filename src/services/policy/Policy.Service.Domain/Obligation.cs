@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Represents an obligation that MUST be fulfilled when a policy decision is enforced.
     /// Based on XACML Obligations. If obligations cannot be fulfilled, the decision should be denied.

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms {
+namespace NOCO.Threvw.Policies.Domain.CombiningAlgorithms {
     /// <summary>
     /// Only-One-Applicable combining algorithm.
     /// Exactly one rule must match. If zero or multiple rules match, returns Indeterminate.

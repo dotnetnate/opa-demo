@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+namespace NOCO.Elements.ApplicationModel.Commands {
     public class ConflictCommandResultHandler<TResult> : CommandResultHandlerBase<TResult> {
         public ConflictCommandResultHandler() {
         }

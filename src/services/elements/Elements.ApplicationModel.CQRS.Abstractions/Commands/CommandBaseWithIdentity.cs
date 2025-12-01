@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.CQRS.Commands { 
+namespace NOCO.Elements.ApplicationModel.CQRS.Commands { 
     public class CommandBaseWithIdentity<TIdentity> : CommandBase {
         public TIdentity? OriginatingUser { get; set; }
         public TIdentity? ImpersonatedUser { get; set; }

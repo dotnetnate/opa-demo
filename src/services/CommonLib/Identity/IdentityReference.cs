@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Identity {
+namespace NOCO.Threvw.Identity {
     public class IdentityReference {      
         /// <summary>
         /// Gets or sets the id of the user.

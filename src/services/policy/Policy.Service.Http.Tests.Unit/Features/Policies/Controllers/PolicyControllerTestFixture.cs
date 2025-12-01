@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Controllers;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Shared.Models;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Controllers;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Models;
+using NOCO.Threvw.Policy.Service.Http.Features.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Testing.Platform.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +12,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using DomainPolicy = CitizensFinancialGroup.Threvw.Policies.Domain.Policy;
+using DomainPolicy = NOCO.Threvw.Policies.Domain.Policy;
 
 namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
     [TestClass]
@@ -27,8 +27,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPoliciesRequest();
             var query = new FindPoliciesQuery();
-            var policies = new List<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>();
-            var queryResult = QueryResult<IEnumerable<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>>.SuccessResult(policies);
+            var policies = new List<NOCO.Threvw.Policies.Domain.Policy>();
+            var queryResult = QueryResult<IEnumerable<NOCO.Threvw.Policies.Domain.Policy>>.SuccessResult(policies);
             var policyModels = new List<PolicyModel>();
 
             mockMapper.Setup(m => m.Map<FindPoliciesQuery>(request)).Returns(query);
@@ -55,8 +55,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPolicyByResourceRequest { Authority = "authority", ResourceId = "resourceId" };
             var query = new FindPolicyByResourceQuery { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var queryResult = QueryResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
+            var policy = new NOCO.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var queryResult = QueryResult<NOCO.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<FindPolicyByResourceQuery>(request)).Returns(query);
@@ -83,8 +83,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var model = new CreatePolicyRequest { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" }, Rules = new List<RuleModel>() };
             var command = new CreatePolicyCommand { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
+            var policy = new NOCO.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult<NOCO.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<CreatePolicyCommand>(model)).Returns(command);
@@ -113,8 +113,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var model = new UpdatePolicyRequest { Rules = new List<RuleModel>() };
             var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = resourceId, Authority = authority } };
-            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
+            var policy = new NOCO.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult<NOCO.Threvw.Policies.Domain.Policy>.SuccessResult(policy);
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
             mockMapper.Setup(m => m.Map<UpdatePolicyCommand>(model)).Returns(command);
@@ -214,8 +214,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPoliciesRequest();
             var query = new FindPoliciesQuery();
-            var queryResult = QueryResult<IEnumerable<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>>.FailureResult(executionException: new Exception("this is an error."), validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
-                Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
+            var queryResult = QueryResult<IEnumerable<NOCO.Threvw.Policies.Domain.Policy>>.FailureResult(executionException: new Exception("this is an error."), validationResult: new NOCO.Elements.Validation.InternalValidationResult {
+                Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
 
             mockMapper.Setup(m => m.Map<FindPoliciesQuery>(request)).Returns(query);
@@ -239,7 +239,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var request = new FindPolicyByResourceRequest { Authority = "authority", ResourceId = "resourceId" };
             var query = new FindPolicyByResourceQuery { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var queryResult = QueryResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>.FailureResult(failureCategory: QueryFailureCategory.ResourceNotFound);
+            var queryResult = QueryResult<NOCO.Threvw.Policies.Domain.Policy>.FailureResult(failureCategory: QueryFailureCategory.ResourceNotFound);
 
             mockMapper.Setup(m => m.Map<FindPolicyByResourceQuery>(request)).Returns(query);
             mockPolicyService.Setup(s => s.GetPolicyByResource(query)).ReturnsAsync(queryResult);
@@ -263,9 +263,9 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
 
             var model = new CreatePolicyRequest { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" }, Rules = new List<RuleModel>() };
             var command = new CreatePolicyCommand { Resource = new Resource { Authority = "authority", Identifier = "resourceId" } };
-            var policy = new CitizensFinancialGroup.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
-            var commandResult = CommandResult.FailureResult<CitizensFinancialGroup.Threvw.Policies.Domain.Policy>((CitizensFinancialGroup.Threvw.Policies.Domain.Policy)null,  failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
-                Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
+            var policy = new NOCO.Threvw.Policies.Domain.Policy { Resource = new Resource { Authority = "authority", Identifier = "resourceId" }, Rules = new List<Rule>() };
+            var commandResult = CommandResult.FailureResult<NOCO.Threvw.Policies.Domain.Policy>((NOCO.Threvw.Policies.Domain.Policy)null,  failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new NOCO.Elements.Validation.InternalValidationResult {
+                Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
             var policyModel = new PolicyModel { Resource = new ResourceModel { Authority = "authority", Identifier = "resourceId" } };
 
@@ -293,7 +293,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var model = new UpdatePolicyRequest { Rules = new List<RuleModel>() };
             var command = new UpdatePolicyCommand { Resource = new Resource { Identifier = resourceId, Authority = authority } };
-            var commandResult = CommandResult<DomainPolicy>.FailureResult((DomainPolicy?)null, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult { Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
+            var commandResult = CommandResult<DomainPolicy>.FailureResult((DomainPolicy?)null, validationResult: new NOCO.Elements.Validation.InternalValidationResult { Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
 
             mockMapper.Setup(m => m.Map<UpdatePolicyCommand>(model)).Returns(command);
             mockPolicyService.Setup(s => s.UpdatePolicy(command)).ReturnsAsync(commandResult);
@@ -317,8 +317,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var authority = "authority";
             var resourceId = "resourceId";
             var command = new DeletePolicyCommand { Resource = new Resource { Identifier = resourceId, Authority = authority } };
-            var commandResult = CommandResult.FailureResult(failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
-                Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
+            var commandResult = CommandResult.FailureResult(failureCategory: CommandFailureCategory.ParameterValidation, validationResult: new NOCO.Elements.Validation.InternalValidationResult {
+                Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
 
             mockPolicyService.Setup(s => s.DeletePolicy(It.IsAny<DeletePolicyCommand>())).ReturnsAsync(commandResult);
@@ -343,7 +343,7 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var resourceId = "resourceId";
             var model = new AddOrUpdateRuleRequest { Rule = new RuleModel { Subject = new SubjectModel { Authority = "abc", Identifier = "def" } } };
             var command = new AddOrUpdateRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, Rule = new Rule { Subject = new Subject { Authority = "abc", Identifier = "def" } } };
-            var commandResult = CommandResult.FailureResult("Error", validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult { Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
+            var commandResult = CommandResult.FailureResult("Error", validationResult: new NOCO.Elements.Validation.InternalValidationResult { Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } } });
 
             mockMapper.Setup(m => m.Map<AddOrUpdateRuleCommand>(model)).Returns(command);
             mockPolicyService.Setup(s => s.AddOrUpdateRule(command)).ReturnsAsync(commandResult);
@@ -370,8 +370,8 @@ namespace zzz.Service.Http.Tests.Unit.Features.Policies.Controllers {
             var subjectAuthority = "authority";
             var subject = new Subject { Identifier = subjectId, Authority = subjectAuthority };
             var command = new DeleteRuleCommand { Resource = new Resource { Identifier = resourceId, Authority = authority }, Subject = subject };
-            var commandResult = CommandResult.FailureResult("Error", validationResult: new CitizensFinancialGroup.Elements.Validation.InternalValidationResult {
-                Errors = new List<CitizensFinancialGroup.Elements.Validation.InternalValidationError> { new CitizensFinancialGroup.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
+            var commandResult = CommandResult.FailureResult("Error", validationResult: new NOCO.Elements.Validation.InternalValidationResult {
+                Errors = new List<NOCO.Elements.Validation.InternalValidationError> { new NOCO.Elements.Validation.InternalValidationError { PropertyName = "resource", ErrorMessage = "Resource not found" } }
             });
 
             

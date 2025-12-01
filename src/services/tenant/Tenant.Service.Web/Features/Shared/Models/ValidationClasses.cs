@@ -1,4 +1,4 @@
-﻿namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Shared.Models {
+﻿namespace NOCO.Threvw.Tenants.Service.Http.Features.Shared.Models {
     public class InternalValidationError {
         public string? PropertyName { get; set; }
         public string? ErrorMessage { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions;
-using CitizensFinancialGroup.Threvw.Tenants.Service.Http.Features.Settings.Models;
+using NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models.Permissions;
+using NOCO.Threvw.Tenants.Service.Http.Features.Settings.Models;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Service.Http.TBD {
+namespace NOCO.Threvw.Tenants.Service.Http.TBD {
     public class OptionsGroupModelJsonConverter : JsonConverter<Features.Settings.Models.OptionsGroup> {
         public override OptionsGroup Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
             // Parse the JSON object

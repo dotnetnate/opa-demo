@@ -1,4 +1,4 @@
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
+namespace NOCO.Threvw.Tenants.Domain {
     public class Tenant {
         public required Guid Id { get; set; }
         public required SystemName Name { get; set; }

@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain.Settings.Permissions {
+namespace NOCO.Threvw.Tenants.Domain.Settings.Permissions {
     public class PermissionsOptionsValidator : AbstractValidator<PermissionOptionsGroup> {
         public PermissionsOptionsValidator() {
             RuleFor(x => x.PermissionDefinitions)

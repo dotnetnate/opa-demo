@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Styra.Opa;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
 
     public class PolicyEnforcementClientOptions {
         public required Uri BaseUri { get; set; } = null!;

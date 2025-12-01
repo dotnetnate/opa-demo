@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     /// <summary>
     /// Represents a privilege with a permission name and multiple effect rules.
     /// Based on XACML policy model with support for conditional effects, obligations, and advice.

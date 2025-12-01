@@ -1,8 +1,8 @@
-﻿using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
-using CitizensFinancialGroup.Elements.Security.Identity;
-using CitizensFinancialGroup.Elements.Validation;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+﻿using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
+using NOCO.Elements.Security.Identity;
+using NOCO.Elements.Validation;
+using NOCO.Threvw.Policies.Domain;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
+namespace NOCO.Threvw.Policies.Domain.Tests {
 
     [TestClass]
     public class PolicyServiceTestFixture {

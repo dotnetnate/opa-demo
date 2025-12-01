@@ -1,11 +1,11 @@
-﻿using CitizensFinancialGroup.Elements;
+﻿using NOCO.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain {
+namespace NOCO.Threvw.Tenants.Domain {
     public class Metric {
         public required string Name { get; set; }
         public Range<DateTimeOffset>? ReportingRange { get; set; }

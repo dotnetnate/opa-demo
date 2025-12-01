@@ -1,11 +1,11 @@
 ﻿
-using CitizensFinancialGroup.Elements.Validation;
+using NOCO.Elements.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Commands {
+namespace NOCO.Elements.ApplicationModel.Commands {
     /// <summary>
     /// The result of executing a command.
     /// </summary>

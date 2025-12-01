@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms {
+namespace NOCO.Threvw.Policies.Domain.CombiningAlgorithms {
     /// <summary>
     /// First-Applicable combining algorithm.
     /// The first rule whose conditions match determines the result.

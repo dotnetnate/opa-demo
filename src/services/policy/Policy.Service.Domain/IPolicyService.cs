@@ -1,10 +1,10 @@
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     public interface IPolicyService {
         /// <summary>
         /// Finds policies based on filtering criteria and pagination options.

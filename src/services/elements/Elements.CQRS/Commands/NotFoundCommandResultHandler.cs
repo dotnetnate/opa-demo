@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
 
     public class NotFoundCommandResultHandler<TResult> : CommandResultHandlerBase<TResult> {
         public NotFoundCommandResultHandler() {

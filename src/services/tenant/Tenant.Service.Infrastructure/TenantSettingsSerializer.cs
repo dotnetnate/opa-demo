@@ -1,4 +1,4 @@
-﻿//using CitizensFinancialGroup.Threvw.Tenants.Domain;
+﻿//using NOCO.Threvw.Tenants.Domain;
 //using MongoDB.Bson.Serialization.Serializers;
 //using MongoDB.Bson.Serialization;
 //using MongoDB.Bson;
@@ -8,7 +8,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace CitizensFinancialGroup.Threvw.Tenants.Infrastructure {
+//namespace NOCO.Threvw.Tenants.Infrastructure {
 //    public class TenantSettingsSerializer : SerializerBase<TenantSettings> {
 
 //        private readonly Dictionary<string, Type> _propertyTypeMap = new();

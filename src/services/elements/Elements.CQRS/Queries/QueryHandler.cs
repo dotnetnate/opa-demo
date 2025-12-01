@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Queries {
+namespace NOCO.Elements.CQRS.Queries {
     public abstract class QueryHandler<TQuery, TResult>
         where TQuery : QueryBase {
 

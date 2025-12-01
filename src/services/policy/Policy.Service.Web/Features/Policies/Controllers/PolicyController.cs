@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Elements.ApplicationModel.Queries;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Elements.ApplicationModel.Queries;
 
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Shared.Models;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Models;
+using NOCO.Threvw.Policy.Service.Http.Features.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Controllers {
+namespace NOCO.Threvw.Policy.Service.Http.Features.Policies.Controllers {
     [ApiController]
     [Route("api/policies")]
     public class PolicyController(IPolicyService policyService, ILogger<PolicyController> logger, IMapper mapper) : ControllerBase {

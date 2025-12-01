@@ -1,7 +1,7 @@
 ﻿using FluentValidation.TestHelper;
 
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
+namespace NOCO.Threvw.Policies.Domain.Tests {
     [TestClass]
     public class SubjectValidatorTestFixture {
         private readonly SubjectValidator _validator;

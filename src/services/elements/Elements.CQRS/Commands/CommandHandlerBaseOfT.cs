@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.CQRS.Commands {
+namespace NOCO.Elements.CQRS.Commands {
     public abstract class CommandHandler<TCommand, TResult>
         where TResult : CommandResult
         where TCommand : CommandBase {

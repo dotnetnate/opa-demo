@@ -1,4 +1,4 @@
-﻿using CitizensFinancialGroup.Threvw.Tenants.Domain;
+﻿using NOCO.Threvw.Tenants.Domain;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Infrastructure {
+namespace NOCO.Threvw.Tenants.Infrastructure {
 
     public class MongoDbTenantRepositoryConfiguration {
         public static void Configure() {

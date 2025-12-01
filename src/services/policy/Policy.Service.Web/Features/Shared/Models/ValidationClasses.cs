@@ -1,4 +1,4 @@
-﻿namespace CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Shared.Models {
+﻿namespace NOCO.Threvw.Policy.Service.Http.Features.Shared.Models {
 
 
     public class InternalValidationResult {

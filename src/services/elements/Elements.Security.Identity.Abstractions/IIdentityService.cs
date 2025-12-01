@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.Security.Identity {
+namespace NOCO.Elements.Security.Identity {
     /// <summary>
     /// Interface for identity services that handle acquiring identities from a given context.
     /// </summary>

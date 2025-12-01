@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Elements.Data.MongoDb.Configuration {
+namespace NOCO.Elements.Data.MongoDb.Configuration {
 
     /// <summary>
     /// Represents the options required to establish a connection to a MongoDB database.

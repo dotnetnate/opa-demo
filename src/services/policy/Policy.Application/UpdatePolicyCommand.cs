@@ -1,7 +1,7 @@
-using CitizensFinancialGroup.Elements.ApplicationModel.Commands;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Elements.ApplicationModel.Commands;
+using NOCO.Threvw.Policies.Domain;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Application {
+namespace NOCO.Threvw.Policies.Application {
     public class UpdatePolicyCommand : CommandBase {
         public required Resource Resource { get; set; } // The resource identifying the policy
         public List<Rule> Rules { get; set; } = new(); // The updated rules for the policy

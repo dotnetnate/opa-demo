@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms {
+namespace NOCO.Threvw.Policies.Domain.CombiningAlgorithms {
     /// <summary>
     /// Deny-Overrides combining algorithm.
     /// If any rule denies, the result is Deny. Otherwise, if any permits, result is Permit.

@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace CitizensFinancialGroup.Threvw.Policy.Service.Client {
+namespace NOCO.Threvw.Policy.Service.Client {
     /// <summary>
     /// Defines how to combine results when multiple effect rules match.
     /// Based on XACML combining algorithms.

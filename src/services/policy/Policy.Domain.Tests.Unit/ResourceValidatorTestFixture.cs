@@ -1,7 +1,7 @@
 ﻿using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.Tests {
+namespace NOCO.Threvw.Policies.Domain.Tests {
     [TestClass]
     public class ResourceValidatorTests {
         private ResourceValidator _validator;

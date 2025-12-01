@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain {
+namespace NOCO.Threvw.Policies.Domain {
     /// <summary>
     /// Validator for the <see cref="Advice"/> class.
     /// </summary>

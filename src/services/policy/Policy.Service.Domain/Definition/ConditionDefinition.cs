@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Definition {
+namespace NOCO.Threvw.Policies.Definition {
     public class ConditionDefinition {
         
         private string _attributePath;        

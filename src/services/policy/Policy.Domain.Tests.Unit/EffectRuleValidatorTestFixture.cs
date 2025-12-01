@@ -1,4 +1,4 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain;
 using FluentValidation.TestHelper;
 
 namespace Policy.Domain.Tests.Unit {
@@ -33,10 +33,10 @@ namespace Policy.Domain.Tests.Unit {
             // Arrange
             var effectRule = new EffectRule {
                 Effect = PermissionActions.Permit,
-                ValidityPeriod = new CitizensFinancialGroup.Elements.Range<DateTimeOffset>(
+                ValidityPeriod = new NOCO.Elements.Range<DateTimeOffset>(
                     DateTimeOffset.Now.AddDays(-10),
                     DateTimeOffset.Now.AddDays(-1)) {
-                    Type = CitizensFinancialGroup.Elements.Range<DateTimeOffset>.RangeType.Inclusive
+                    Type = NOCO.Elements.Range<DateTimeOffset>.RangeType.Inclusive
                 },
                 Conditions = new List<Condition>(),
                 Obligations = new List<Obligation>(),
@@ -55,10 +55,10 @@ namespace Policy.Domain.Tests.Unit {
             // Arrange
             var effectRule = new EffectRule {
                 Effect = PermissionActions.Permit,
-                ValidityPeriod = new CitizensFinancialGroup.Elements.Range<DateTimeOffset>(
+                ValidityPeriod = new NOCO.Elements.Range<DateTimeOffset>(
                     DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(30)) {
-                    Type = CitizensFinancialGroup.Elements.Range<DateTimeOffset>.RangeType.Inclusive
+                    Type = NOCO.Elements.Range<DateTimeOffset>.RangeType.Inclusive
                 },
                 Conditions = new List<Condition>(),
                 Obligations = new List<Obligation>(),

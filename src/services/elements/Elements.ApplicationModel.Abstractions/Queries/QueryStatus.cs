@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CitizensFinancialGroup.Elements.ApplicationModel.Queries {
+namespace NOCO.Elements.ApplicationModel.Queries {
     public enum QueryStatus {
         Succeeded = 0,        
         Failed = 200,

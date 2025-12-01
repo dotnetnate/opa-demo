@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Elements.Core</AssemblyName>
-    <RootNamespace>CitizensFinancialGroup.Elements</RootNamespace>
+    <RootNamespace>NOCO.Elements</RootNamespace>
   </PropertyGroup>
 
 </Project>

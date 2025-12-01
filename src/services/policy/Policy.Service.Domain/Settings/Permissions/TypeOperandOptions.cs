@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CitizensFinancialGroup.Threvw.Tenants.Domain.Settings.Permissions {
+namespace NOCO.Threvw.Tenants.Domain.Settings.Permissions {
     internal class TypeOperandOptions {
         private static Dictionary<string, string[]> _typeOperandOptions = new Dictionary<string, string[]> {
             { "string", new string[]{ "gt", "lt", "eq", "neq", "gte", "lte" } },

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms {
+namespace NOCO.Threvw.Policies.Domain.CombiningAlgorithms {
     /// <summary>
     /// Strategy interface for evaluating privileges using different combining algorithms.
     /// Implementing classes define how multiple effect rules are combined.

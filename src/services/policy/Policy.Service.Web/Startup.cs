@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CitizensFinancialGroup.Threvw.Tenants.Domain;
-using CitizensFinancialGroup.Threvw.Tenants.Infrastructure;
+using NOCO.Threvw.Tenants.Domain;
+using NOCO.Threvw.Tenants.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Microsoft.Extensions.Logging;
@@ -12,22 +12,22 @@ using System.Text.Json;
 using MongoDB.Bson;
 using System.Security.Claims;
 using Microsoft.OpenApi.Models;
-using CitizensFinancialGroup.Elements.Data.MongoDb;
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms;
-using CitizensFinancialGroup.Elements.Security.Identity;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.TBD;
-using CitizensFinancialGroup.Elements.Validation;
+using NOCO.Elements.Data.MongoDb;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain.CombiningAlgorithms;
+using NOCO.Elements.Security.Identity;
+using NOCO.Threvw.Policy.Service.Http.TBD;
+using NOCO.Elements.Validation;
 using System.Text.Json.Serialization;
-using CitizensFinancialGroup.Threvw.Policy.Service.Http.Features.Policies.Models;
+using NOCO.Threvw.Policy.Service.Http.Features.Policies.Models;
 using System.Diagnostics.CodeAnalysis;
-using CitizensFinancialGroup.Elements.Data.MongoDb.Configuration;
-using CitizensFinancialGroup.Elements.Validation.FluentValidation;
+using NOCO.Elements.Data.MongoDb.Configuration;
+using NOCO.Elements.Validation.FluentValidation;
 
 
 
 
-namespace CitizensFinancialGroup.Threvw.Policies.Service.Http {
+namespace NOCO.Threvw.Policies.Service.Http {
     [ExcludeFromCodeCoverage]
     public class Startup {
         public Startup(IConfiguration configuration) {

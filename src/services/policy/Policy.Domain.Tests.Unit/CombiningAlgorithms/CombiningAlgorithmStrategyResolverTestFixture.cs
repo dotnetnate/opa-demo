@@ -1,5 +1,5 @@
-using CitizensFinancialGroup.Threvw.Policies.Domain;
-using CitizensFinancialGroup.Threvw.Policies.Domain.CombiningAlgorithms;
+using NOCO.Threvw.Policies.Domain;
+using NOCO.Threvw.Policies.Domain.CombiningAlgorithms;
 
 namespace Policy.Domain.Tests.Unit.CombiningAlgorithms {
     [TestClass]
